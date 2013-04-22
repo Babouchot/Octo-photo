@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Permissions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:Microsoft.VisualStudio.Data.Schema.Permissions" Version="1.0">
+  <!--  Les exemples ci-dessous montrent comment sont définies 
+        les autorisations dans le système de projet pour les 
+        bases de données, les objets et les colonnes.
+        
+        GRANT – octroi d'autorisations de base de données
+        
+        <PermissionStatement Action ="GRANT">
+          <Permission>CREATE TABLE</Permission>
+          <Grantee>User1</Grantee>
+        </PermissionStatement>
+        
+        GRANT – octroi d'autorisations d'objet
+        
+        <PermissionStatement Action ="GRANT">
+          <Permission>SELECT</Permission>
+          <Grantee>User1</Grantee>
+          <Object Name ="Table1" Schema ="User1" Type ="OBJECT"/>
+        </PermissionStatement>
+
+        DENY – refus d'autorisations d'objet
+        
+        <PermissionStatement Action ="DENY">
+          <Permission>DELETE</Permission>
+          <Grantee>User1</Grantee>
+          <Object Name ="Table1" Schema ="User1" Type ="OBJECT"/>
+        </PermissionStatement>
+
+        GRANT – octroi d'autorisations de colonne d'objets
+        
+        <PermissionStatement Action ="GRANT">
+          <Permission>SELECT</Permission>
+          <Grantee>User1</Grantee>
+          <Object Name ="Table1" Schema ="User1" Type ="OBJECT">
+            <Columns Treatment ="INCLUDE">
+              <Column Name="Col1"/>
+              <Column Name="Col2"/>
+              <Column Name="…"/>
+            </Columns>
+          </Object>
+        </PermissionStatement>
+  -->
+</Permissions>
