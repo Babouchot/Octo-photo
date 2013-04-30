@@ -102,6 +102,7 @@
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
           <sp:Body />
+          <sp:Header Name="ImageInfo" Namespace="http://tempuri.org/" />
           <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
           <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
           <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
@@ -112,6 +113,7 @@
         </sp:SignedParts>
         <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
           <sp:Body />
+          <sp:Header Name="ImageInfo" Namespace="http://tempuri.org/" />
         </sp:EncryptedParts>
       </wsp:All>
     </wsp:ExactlyOne>
@@ -178,28 +180,30 @@
       <xsd:import schemaLocation="http://localhost:1655/ImageTransfert.svc?xsd=xsd1" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:1655/ImageTransfert.svc?xsd=xsd0" namespace="http://schemas.microsoft.com/Message" />
       <xsd:import schemaLocation="http://localhost:1655/ImageTransfert.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:1655/ImageTransfert.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Octo_photo_wcf" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IImageTransfert_UploadImage_InputMessage">
-    <wsdl:part name="parameters" element="tns:UploadImage" />
+  <wsdl:message name="ImageUploadRequest">
+    <wsdl:part name="parameters" element="tns:ImageUploadRequest" />
   </wsdl:message>
-  <wsdl:message name="IImageTransfert_UploadImage_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UploadImageResponse" />
+  <wsdl:message name="ImageUploadRequest_Headers">
+    <wsdl:part name="ImageInfo" element="tns:ImageInfo" />
   </wsdl:message>
-  <wsdl:message name="IImageTransfert_DownloadImage_InputMessage">
-    <wsdl:part name="parameters" element="tns:DownloadImage" />
+  <wsdl:message name="IImageTransfert_UploadImage_OutputMessage" />
+  <wsdl:message name="ImageDownloadRequest">
+    <wsdl:part name="parameters" element="tns:ImageDownloadRequest" />
   </wsdl:message>
-  <wsdl:message name="IImageTransfert_DownloadImage_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DownloadImageResponse" />
+  <wsdl:message name="ImageDownloadResponse">
+    <wsdl:part name="parameters" element="tns:ImageDownloadResponse" />
   </wsdl:message>
   <wsdl:portType name="IImageTransfert">
     <wsdl:operation name="UploadImage">
-      <wsdl:input wsaw:Action="http://tempuri.org/IImageTransfert/UploadImage" message="tns:IImageTransfert_UploadImage_InputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IImageTransfert/UploadImage" name="ImageUploadRequest" message="tns:ImageUploadRequest" />
       <wsdl:output wsaw:Action="http://tempuri.org/IImageTransfert/UploadImageResponse" message="tns:IImageTransfert_UploadImage_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DownloadImage">
-      <wsdl:input wsaw:Action="http://tempuri.org/IImageTransfert/DownloadImage" message="tns:IImageTransfert_DownloadImage_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IImageTransfert/DownloadImageResponse" message="tns:IImageTransfert_DownloadImage_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IImageTransfert/DownloadImage" name="ImageDownloadRequest" message="tns:ImageDownloadRequest" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IImageTransfert/DownloadImageResponse" name="ImageDownloadResponse" message="tns:ImageDownloadResponse" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IImageTransfert" type="tns:IImageTransfert">
@@ -207,8 +211,9 @@
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="UploadImage">
       <soap12:operation soapAction="http://tempuri.org/IImageTransfert/UploadImage" style="document" />
-      <wsdl:input>
+      <wsdl:input name="ImageUploadRequest">
         <wsp:PolicyReference URI="#WSHttpBinding_IImageTransfert_UploadImage_Input_policy" />
+        <soap12:header message="tns:ImageUploadRequest_Headers" part="ImageInfo" use="literal" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
@@ -218,11 +223,11 @@
     </wsdl:operation>
     <wsdl:operation name="DownloadImage">
       <soap12:operation soapAction="http://tempuri.org/IImageTransfert/DownloadImage" style="document" />
-      <wsdl:input>
+      <wsdl:input name="ImageDownloadRequest">
         <wsp:PolicyReference URI="#WSHttpBinding_IImageTransfert_DownloadImage_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
+      <wsdl:output name="ImageDownloadResponse">
         <wsp:PolicyReference URI="#WSHttpBinding_IImageTransfert_DownloadImage_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>

@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using System.IO;
 using Octo_photo_library;
+using System.Diagnostics;
 
 namespace Octo_photo_wcf
 {
@@ -22,8 +23,9 @@ namespace Octo_photo_wcf
             MemoryStream imageStreamEnMemoire = new MemoryStream();
             data.ImageData.CopyTo(imageStreamEnMemoire);
             imageBytes = imageStreamEnMemoire.ToArray();
-
+            Debug.WriteLine("plop1");
             String imageID = bdAccess.addImage(data.ImageInfo.idAlbum, imageBytes);
+            Debug.WriteLine("plop2");
             imageStreamEnMemoire.Close();
             data.ImageData.Close();
         }

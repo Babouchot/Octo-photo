@@ -11,10 +11,16 @@ namespace clientTest
         static void Main(string[] args)
         {
             // Instanciation de la référence de service 
-            imageTransfert.ImageTransfertClient imageTransfertService = new imageTransfert.ImageTransfertClient();
+            ImageTransfertServiceReference.ImageTransfertClient imageTransfertService = new ImageTransfertServiceReference.ImageTransfertClient();
             MemoryStream imageStream = new MemoryStream(lireFichier(@"C:\Users\user\Pictures\absorbeur.PNG"));
-            // Appel de notre web method 
-            imageTransfertService.UploadImage(imageStream);
+            ImageTransfertServiceReference.ImageInfo info = new ImageTransfertServiceReference.ImageInfo();
+            info.ID = "Plop";
+            info.idAlbum = 1;
+            ImageTransfertServiceReference.ImageUploadRequest request = new ImageTransfertServiceReference.ImageUploadRequest();
+            request.ImageData = imageStream;
+            request.ImageInfo = info;
+            // Appel de notre web method
+            imageTransfertService.UploadImage(info, imageStream);
             Console.Out.WriteLine("Transfert Terminé");
             Console.ReadLine(); 
         }
