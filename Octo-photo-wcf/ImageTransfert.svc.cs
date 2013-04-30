@@ -15,27 +15,28 @@ namespace Octo_photo_wcf
         // la classe AccesDonnees n’est pas donnée ici 
         private ImageInterface bdAccess = new ImageInterface();
 
-        public String UploadImage(Stream image)
+        public void UploadImage(ImageUploadRequest data)
         {
             // Stocker l’image en BDD
             byte[] imageBytes = null;
             MemoryStream imageStreamEnMemoire = new MemoryStream();
-            image.CopyTo(imageStreamEnMemoire);
+            data.ImageData.CopyTo(imageStreamEnMemoire);
             imageBytes = imageStreamEnMemoire.ToArray();
-            //String imageID = bdAccess.addImage(idAlbum, image);
+
+            String imageID = bdAccess.addImage(data.ImageInfo.idAlbum, imageBytes);
             imageStreamEnMemoire.Close();
-            image.Close();
-            //return imageID;
-            return "plop";
+            data.ImageData.Close();
         }
 
 
-        public Stream DownloadImage(String imageID)
+        public ImageDownloadResponse DownloadImage(ImageDownloadRequest imageID)
         {
             // Récupérer l'image stockée en BDD et la transférer au client
-            byte[] imageBytes = bdAccess.getImage(imageID);
+            byte[] imageBytes = bdAccess.getImage(imageID.ImageInfo.ID);
             MemoryStream imageStreamEnMemoire = new MemoryStream(imageBytes);
-            return imageStreamEnMemoire;
+            ImageDownloadResponse response = new ImageDownloadResponse();
+            response.ImageData = imageStreamEnMemoire;
+            return response;
         }
     }
 }
