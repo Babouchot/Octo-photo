@@ -13,9 +13,42 @@ namespace Octo_photo_wcf
     public interface IImageTransfert
     {
         [OperationContract]
-        String UploadImage(Stream image);
+        void UploadImage(ImageUploadRequest data);
 
         [OperationContract]
-        Stream DownloadImage(String name);
+        ImageDownloadResponse DownloadImage(ImageDownloadRequest data);
+    }
+    [MessageContract]
+    public class ImageUploadRequest
+    {
+        [MessageHeader(MustUnderstand = true)]
+        public ImageInfo ImageInfo;
+
+        [MessageBodyMember(Order = 1)]
+        public Stream ImageData;
+    }
+    [MessageContract]
+    public class ImageDownloadResponse
+    {
+        [MessageBodyMember(Order = 1)]
+        public Stream ImageData;
+    }
+    [MessageContract]
+    public class ImageDownloadRequest
+    {
+        [MessageBodyMember(Order = 1)]
+        public ImageInfo ImageInfo;
+    }
+
+    [DataContract]
+    public class ImageInfo
+    {
+        [DataMember(Order = 1, IsRequired = true)]
+        public string ID { get; set; }
+
+        [DataMember(Order = 2, IsRequired = true)]
+        public int idAlbum { get; set; }
     }
 }
+
+

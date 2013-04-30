@@ -26,14 +26,16 @@ namespace Octo_photo_library
                 connexion.Open();
 
                 // construit la requête
-                SqlCommand ajoutImage = new SqlCommand("INSERT INTO Photo (blob, size, idAlbum) " +
-                    "VALUES(@Blob, @size, @idAlbum)", connexion);
-                ajoutImage.Parameters.Add("@Blob", SqlDbType.Image, image.Length).Value = image;
+                SqlCommand ajoutImage = new SqlCommand("INSERT INTO Photo (id, blob, size, idAlbum) " +
+                    "VALUES(@id, @blob, @size, @idAlbum)", connexion);
+                ajoutImage.Parameters.Add("@blob", SqlDbType.Image, image.Length).Value = image;
                 ajoutImage.Parameters.Add("@size", SqlDbType.Int).Value = image.Length;
                 ajoutImage.Parameters.Add("@idAlbum", SqlDbType.Int).Value = idAlbum;
 
                 // execution de la requête
                 ajoutImage.ExecuteNonQuery();
+
+                return "";
             }
             catch (Exception e)
             {
