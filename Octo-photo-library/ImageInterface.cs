@@ -11,31 +11,26 @@ namespace Octo_photo_library
     {
         SqlConnection connexion;
 
-        public string addImage(int idAlbum, byte[] image)
-        {
-            string ID;
-            
+        public void addImage(string ID, int idAlbum, byte[] image)
+        {            
             try
             {
                 // connexion au serveur
-                string connectionStr = "Server=MAUREILL;Database=DBMiniProjet;Integrated Security=true;";
-                string queryStr = "SELECT * from Etudiant";
+                string connectionStr = "Server=YXXX;Database=DBMiniProjet;Integrated Security=true;";
 
                 // creation des object SqlConnection, SqlCommand et DataReader 
                 connexion = new SqlConnection(connectionStr);
                 connexion.Open();
 
                 // construit la requête
-                SqlCommand ajoutImage = new SqlCommand("INSERT INTO Photo (blob, size, idAlbum) " +
-                    "VALUES(@blob, @size, @idAlbum)", connexion);
+                SqlCommand ajoutImage = new SqlCommand("INSERT INTO Photo (blob, size, idAlbum, nomPhoto) " +
+                    "VALUES(@blob, @size, @idAlbum, @ID)", connexion);
                 ajoutImage.Parameters.Add("@blob", SqlDbType.Image, image.Length).Value = image;
                 ajoutImage.Parameters.Add("@size", SqlDbType.Int).Value = image.Length;
                 ajoutImage.Parameters.Add("@idAlbum", SqlDbType.Int).Value = idAlbum;
-
+                ajoutImage.Parameters.Add("@ID", SqlDbType.NChar).Value = ID.ToCharArray(0, ID.Length);
                 // execution de la requête
                 ajoutImage.ExecuteNonQuery();
-
-                return "";
             }
             catch (Exception e)
             {
@@ -46,7 +41,6 @@ namespace Octo_photo_library
                 // dans tous les cas on ferme la connexion
                 connexion.Close();
             }
-            return "TODO : return -> ID";
         }
 
         // récupération d'une image de la base à l'aide d'un DataReader

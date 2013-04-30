@@ -14,7 +14,7 @@ namespace clientTest
             ImageTransfertServiceReference.ImageTransfertClient imageTransfertService = new ImageTransfertServiceReference.ImageTransfertClient();
             MemoryStream imageStream = new MemoryStream(lireFichier(@"C:\Users\user\Pictures\absorbeur.PNG"));
             ImageTransfertServiceReference.ImageInfo info = new ImageTransfertServiceReference.ImageInfo();
-            info.ID = "Plop";
+            info.ID = "Plop2";
             info.idAlbum = 1;
             ImageTransfertServiceReference.ImageUploadRequest request = new ImageTransfertServiceReference.ImageUploadRequest();
             request.ImageData = imageStream;

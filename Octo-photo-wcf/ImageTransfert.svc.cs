@@ -23,9 +23,7 @@ namespace Octo_photo_wcf
             MemoryStream imageStreamEnMemoire = new MemoryStream();
             data.ImageData.CopyTo(imageStreamEnMemoire);
             imageBytes = imageStreamEnMemoire.ToArray();
-            Debug.WriteLine("plop1");
-            String imageID = bdAccess.addImage(data.ImageInfo.idAlbum, imageBytes);
-            Debug.WriteLine("plop2");
+            bdAccess.addImage(data.ImageInfo.ID, data.ImageInfo.idAlbum, imageBytes);
             imageStreamEnMemoire.Close();
             data.ImageData.Close();
         }
