@@ -11,8 +11,9 @@ namespace Octo_photo_library
     {
         SqlConnection connexion;
 
-        public void addImage(String imageID, byte[] image)
+        public string addImage(int idAlbum, byte[] image)
         {
+            string ID;
             
             try
             {
@@ -25,11 +26,11 @@ namespace Octo_photo_library
                 connexion.Open();
 
                 // construit la requête
-                SqlCommand ajoutImage = new SqlCommand("INSERT INTO Image (id, blob, size) " +
-                    "VALUES(@id, @Blob, @size)", connexion);
-                ajoutImage.Parameters.Add("@id", SqlDbType.VarChar, imageID.Length).Value = imageID;
+                SqlCommand ajoutImage = new SqlCommand("INSERT INTO Photo (blob, size, idAlbum) " +
+                    "VALUES(@Blob, @size, @idAlbum)", connexion);
                 ajoutImage.Parameters.Add("@Blob", SqlDbType.Image, image.Length).Value = image;
                 ajoutImage.Parameters.Add("@size", SqlDbType.Int).Value = image.Length;
+                ajoutImage.Parameters.Add("@idAlbum", SqlDbType.Int).Value = idAlbum;
 
                 // execution de la requête
                 ajoutImage.ExecuteNonQuery();
@@ -43,6 +44,7 @@ namespace Octo_photo_library
                 // dans tous les cas on ferme la connexion
                 connexion.Close();
             }
+            return "TODO : return -> ID";
         }
 
         // récupération d'une image de la base à l'aide d'un DataReader

@@ -1,4 +1,4 @@
 Octo-photo
 ==========
 
-application client-serveur de d'album photo en ligne
+application client-serveur d'album photo en ligne
