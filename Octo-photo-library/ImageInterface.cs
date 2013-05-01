@@ -50,13 +50,18 @@ namespace Octo_photo_library
             try
             {
                 // connexion au serveur
+                string connectionStr = "Server=YXXX;Database=DBMiniProjet;Integrated Security=true;";
+
+                // creation des object SqlConnection, SqlCommand et DataReader 
+                connexion = new SqlConnection(connectionStr);
                 connexion.Open();
+
                 // construit la requête 
                 SqlCommand getImage = new SqlCommand(
-                    "SELECT id,size, blob " +
-                    "FROM Image " +
-                    "WHERE id = @id", connexion);
-                getImage.Parameters.Add("@id", SqlDbType.VarChar, imageID.Length).Value =
+                    "SELECT nomPhoto,size, blob " +
+                    "FROM Photo " +
+                    "WHERE nomPhoto = @nomPhoto", connexion);
+                getImage.Parameters.Add("@nomPhoto", SqlDbType.VarChar, imageID.Length).Value =
                 imageID;
                 // exécution de la requête et création du reader
                 SqlDataReader myReader =
