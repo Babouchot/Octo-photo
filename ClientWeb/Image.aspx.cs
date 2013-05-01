@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
 
 namespace ClientWeb
 {
@@ -18,16 +19,25 @@ namespace ClientWeb
             {
                 // on récupére notre image là où il faut
                 
-                //ImageTransfertServiceReference.ImageTransfertClient imageTransfertService = new ImageTransfertServiceReference.ImageTransfertClient();
+                ImageTransfertServiceReference.ImageTransfertClient imageTransfertService = new ImageTransfertServiceReference.ImageTransfertClient();
 
-                Byte[] bytes = XXXXXX.getImage(id);
+                ImageTransfertServiceReference.ImageDownloadRequest request = new ImageTransfertServiceReference.ImageDownloadRequest();
+                request.ImageInfo.ID = id;
+                request.ImageInfo.idAlbum = 1;
+                
+                ImageTransfertServiceReference.ImageDownloadResponse reponse = new ImageTransfertServiceReference.ImageDownloadResponse();
+
+                // Appel de notre web method
+                reponse.ImageData = imageTransfertService.DownloadImage(request.ImageInfo);
+                Stream image = reponse.ImageData;
+    
                 // et on crée le contenu de notre réponse à la requête HTTP
                 // (ici un contenu de type image)
                 Response.Buffer = true;
                 Response.Charset = "";
                 Response.Cache.SetCacheability(HttpCacheability.NoCache);
                 Response.ContentType = "image/jpeg";
-                Response.BinaryWrite(bytes);
+                Response.Write(image);
                 Response.Flush();
                 Response.End();
             }
