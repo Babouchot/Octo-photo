@@ -47,5 +47,10 @@ namespace ClientWeb
         {
             ImageCourante.ImageUrl = "Image.aspx?ImageID=" + ImageIDBox.Text;
         }
+
+        protected void Authentifier_Click(object sender, EventArgs e)
+        {
+            Session["user"] = UserTextBox.Text;
+        }
     }
 }

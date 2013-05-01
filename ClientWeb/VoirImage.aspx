@@ -9,6 +9,26 @@
     <form id="form1" runat="server">
     <div>
         <p>
+            Salut
+            <%
+                // Si la variable de session user est non nulle,
+                // on "écrit" sa valeur dans la page HTML que l'on génère
+                if (Session["user"] != null)
+                {
+                    Response.Write(Session["user"]);
+                }
+                else
+                {
+                    Response.Write("inconnu");
+                } %>
+                . Quel image voulez-vous visualiser ?
+        </p>
+        <p>
+            Nom :
+            <asp:TextBox ID="UserTextBox" runat="server" />
+            <asp:Button ID="UserBouton" runat="server" OnClick="Authentifier_Click" Text="Ok" />
+        </p>
+        <p>
             <asp:Image ID="ImageCourante" runat="server" />
         </p>
         <p>
