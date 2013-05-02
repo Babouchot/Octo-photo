@@ -11,26 +11,24 @@ namespace Octo_photo_library
     {
         SqlConnection connexion;
 
-        public void addImage(String imageID, byte[] image)
-        {
-            
+        public void addImage(string ID, int idAlbum, byte[] image)
+        {            
             try
             {
                 // connexion au serveur
-                string connectionStr = "Server=Admin-msi;Database=DBMiniProjet;Integrated Security=true;";
-                string queryStr = "SELECT * from Etudiant";
+                string connectionStr = "Server=YXXX;Database=DBMiniProjet;Integrated Security=true;";
 
                 // creation des object SqlConnection, SqlCommand et DataReader 
                 connexion = new SqlConnection(connectionStr);
                 connexion.Open();
 
                 // construit la requête
-                SqlCommand ajoutImage = new SqlCommand("INSERT INTO Image (id, blob, size) " +
-                    "VALUES(@id, @Blob, @size)", connexion);
-                ajoutImage.Parameters.Add("@id", SqlDbType.VarChar, imageID.Length).Value = imageID;
-                ajoutImage.Parameters.Add("@Blob", SqlDbType.Image, image.Length).Value = image;
+                SqlCommand ajoutImage = new SqlCommand("INSERT INTO Photo (blob, size, idAlbum, nomPhoto) " +
+                    "VALUES(@blob, @size, @idAlbum, @ID)", connexion);
+                ajoutImage.Parameters.Add("@blob", SqlDbType.Image, image.Length).Value = image;
                 ajoutImage.Parameters.Add("@size", SqlDbType.Int).Value = image.Length;
-
+                ajoutImage.Parameters.Add("@idAlbum", SqlDbType.Int).Value = idAlbum;
+                ajoutImage.Parameters.Add("@ID", SqlDbType.NChar).Value = ID.ToCharArray(0, ID.Length);
                 // execution de la requête
                 ajoutImage.ExecuteNonQuery();
             }
@@ -52,13 +50,18 @@ namespace Octo_photo_library
             try
             {
                 // connexion au serveur
+                string connectionStr = "Server=YXXX;Database=DBMiniProjet;Integrated Security=true;";
+
+                // creation des object SqlConnection, SqlCommand et DataReader 
+                connexion = new SqlConnection(connectionStr);
                 connexion.Open();
+
                 // construit la requête 
                 SqlCommand getImage = new SqlCommand(
-                    "SELECT id,size, blob " +
-                    "FROM Image " +
-                    "WHERE id = @id", connexion);
-                getImage.Parameters.Add("@id", SqlDbType.VarChar, imageID.Length).Value =
+                    "SELECT nomPhoto,size, blob " +
+                    "FROM Photo " +
+                    "WHERE nomPhoto = @nomPhoto", connexion);
+                getImage.Parameters.Add("@nomPhoto", SqlDbType.VarChar, imageID.Length).Value =
                 imageID;
                 // exécution de la requête et création du reader
                 SqlDataReader myReader =

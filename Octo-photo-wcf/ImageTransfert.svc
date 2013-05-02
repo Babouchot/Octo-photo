@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Octo_photo_wcf.ImageTransfert" CodeBehind="ImageTransfert.svc.cs" %>
