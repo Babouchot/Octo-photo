@@ -17,7 +17,7 @@ namespace Octo_photo_library
             try
             {
                 // connexion au serveur
-                string connectionStr = "Server=157.169.102.43/YXXX/user\\SQLEXPRESS;Database=DBMiniProjet;Integrated Security=true;";
+                string connectionStr = "Server=Admin-msi;Database=DBMiniProjet;Integrated Security=true;";
                 string queryStr = "SELECT * from Etudiant";
 
                 // creation des object SqlConnection, SqlCommand et DataReader 
