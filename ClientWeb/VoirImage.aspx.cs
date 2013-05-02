@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 
+
 namespace ClientWeb
 {
     public partial class VoirImage : System.Web.UI.Page
@@ -21,15 +22,19 @@ namespace ClientWeb
 
                 ImageTransfertServiceReference.ImageTransfertClient imageTransfertService = new ImageTransfertServiceReference.ImageTransfertClient();
 
-                ImageTransfertServiceReference.ImageDownloadRequest request = new ImageTransfertServiceReference.ImageDownloadRequest();
-                request.ImageInfo.ID = id;
-                request.ImageInfo.idAlbum = 1;
+                ImageTransfertServiceReference.ImageInfo info = new ImageTransfertServiceReference.ImageInfo();
+                info.ID = id;
+                info.idAlbum = 1;
 
                 ImageTransfertServiceReference.ImageDownloadResponse reponse = new ImageTransfertServiceReference.ImageDownloadResponse();
 
                 // Appel de notre web method
-                reponse.ImageData = imageTransfertService.DownloadImage(request.ImageInfo);
+                reponse.ImageData = imageTransfertService.DownloadImage(info);
                 Stream image = reponse.ImageData;
+
+                MemoryStream memStream = new MemoryStream();
+                image.CopyTo(memStream);
+                Byte[] bytes = memStream.ToArray();
 
                 // et on crée le contenu de notre réponse à la requête HTTP
                 // (ici un contenu de type image)
@@ -37,7 +42,7 @@ namespace ClientWeb
                 Response.Charset = "";
                 Response.Cache.SetCacheability(HttpCacheability.NoCache);
                 Response.ContentType = "image/jpeg";
-                Response.Write(image);
+                Response.BinaryWrite(bytes);
                 Response.Flush();
                 Response.End();
             }
@@ -45,7 +50,7 @@ namespace ClientWeb
 
         protected void Visualiser_Click(object sender, EventArgs e)
         {
-            ImageCourante.ImageUrl = "Image.aspx?ImageID=" + ImageIDBox.Text;
+            ImageCourante.ImageUrl = "VoirImage.aspx?ImageID=" + ImageIDBox.Text;
         }
 
         protected void Authentifier_Click(object sender, EventArgs e)
