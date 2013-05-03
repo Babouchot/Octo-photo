@@ -7,6 +7,7 @@
     <h2>
         Bienvenue dans Octo-Photo
     </h2>
+    <p>
         Ici, vous pouver déposer et visualiser les images de vos albums.
     </p>
     <p>
