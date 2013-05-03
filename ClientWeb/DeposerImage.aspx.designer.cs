@@ -10,7 +10,7 @@
 namespace ClientWeb {
     
     
-    public partial class VoirImage {
+    public partial class DeposerImage {
         
         /// <summary>
         /// Contrôle Head1.
@@ -49,48 +49,75 @@ namespace ClientWeb {
         protected global::System.Web.UI.WebControls.Menu NavigationMenu;
         
         /// <summary>
-        /// Contrôle UserTextBox.
+        /// Contrôle DeposValidationSummary.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UserTextBox;
+        protected global::System.Web.UI.WebControls.ValidationSummary DeposValidationSummary;
         
         /// <summary>
-        /// Contrôle UserBouton.
+        /// Contrôle NomImageLabel.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UserBouton;
+        protected global::System.Web.UI.WebControls.Label NomImageLabel;
         
         /// <summary>
-        /// Contrôle ImageCourante.
+        /// Contrôle NomImage.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImageCourante;
+        protected global::System.Web.UI.WebControls.TextBox NomImage;
         
         /// <summary>
-        /// Contrôle ImageIDBox.
+        /// Contrôle NomImageRequired.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ImageIDBox;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator NomImageRequired;
         
         /// <summary>
-        /// Contrôle Visualiser.
+        /// Contrôle PathLabel.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Visualiser;
+        protected global::System.Web.UI.WebControls.Label PathLabel;
+        
+        /// <summary>
+        /// Contrôle Path.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Path;
+        
+        /// <summary>
+        /// Contrôle PathRequired.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator PathRequired;
+        
+        /// <summary>
+        /// Contrôle DeposButton.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DeposButton;
     }
 }
