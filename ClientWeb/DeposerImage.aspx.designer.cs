@@ -85,6 +85,33 @@ namespace ClientWeb {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator NomImageRequired;
         
         /// <summary>
+        /// Contrôle NumeroAlbumLabel.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label NumeroAlbumLabel;
+        
+        /// <summary>
+        /// Contrôle NumeroAlbum.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox NumeroAlbum;
+        
+        /// <summary>
+        /// Contrôle NumeroAlbumRequired.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator NumeroAlbumRequired;
+        
+        /// <summary>
         /// Contrôle PathLabel.
         /// </summary>
         /// <remarks>

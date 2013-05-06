@@ -10,13 +10,14 @@ namespace Octo_photo_library
     public class ImageInterface
     {
         SqlConnection connexion;
+        string bdConec = "Server=YXXX;Database=DBMiniProjet;Integrated Security=true;";
 
         public void addImage(string ID, int idAlbum, byte[] image)
         {            
             try
             {
                 // connexion au serveur
-                string connectionStr = "Server=YXXX;Database=DBMiniProjet;Integrated Security=true;";
+                string connectionStr = bdConec;
 
                 // creation des object SqlConnection, SqlCommand et DataReader 
                 connexion = new SqlConnection(connectionStr);
@@ -50,7 +51,7 @@ namespace Octo_photo_library
             try
             {
                 // connexion au serveur
-                string connectionStr = "Server=YXXX;Database=DBMiniProjet;Integrated Security=true;";
+                string connectionStr = bdConec;
 
                 // creation des object SqlConnection, SqlCommand et DataReader 
                 connexion = new SqlConnection(connectionStr);

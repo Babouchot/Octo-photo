@@ -14,18 +14,20 @@ namespace ClientWeb
         {
             // On récupére la valeur du text dans la TextBox
             String name = Request.QueryString["NomImage"];
+            String numS = Request.QueryString["NumeroAlbum"];
             String path = Request.QueryString["Path"];
             // Si ce paramètre n'est pas nul
-            if (name != null)
+            if (name != null && path != null && numS != null)
             {
-                if (path != null)
+                try
                 {
+                    int num = Convert.ToInt32(numS);
                     // Instanciation de la référence de service 
                     ImageTransfertServiceReference.ImageTransfertClient imageTransfertService = new ImageTransfertServiceReference.ImageTransfertClient();
                     MemoryStream imageStream = new MemoryStream(lireFichier(path));
                     ImageTransfertServiceReference.ImageInfo info = new ImageTransfertServiceReference.ImageInfo();
                     info.ID = name;
-                    info.idAlbum = 1;
+                    info.idAlbum = num;
                     ImageTransfertServiceReference.ImageUploadRequest request = new ImageTransfertServiceReference.ImageUploadRequest();
                     request.ImageData = imageStream;
                     request.ImageInfo = info;
@@ -33,11 +35,19 @@ namespace ClientWeb
                     imageTransfertService.UploadImage(info, imageStream);
                     Session["transfert"] = "Transfert terminé";
                 }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Le numéro d'album n'est pas un nombre");
+                }
+                catch (OverflowException)
+                {
+                    Console.WriteLine("Le numéro d'album est trop grand");
+                }
             }
         }
         protected void Deposer_Click(object sender, EventArgs e)
         {
-            Response.Redirect("DeposerImage.aspx?NomImage=" + NomImage.Text + "&Path=" + Path.Text);
+            Response.Redirect("DeposerImage.aspx?NomImage=" + NomImage.Text + "&Path=" + Path.Text + "&NumeroAlbum=" + NumeroAlbum.Text);
         }
 
 

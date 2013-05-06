@@ -49,6 +49,13 @@
                              ValidationGroup="DeposValidationGroup">*</asp:RequiredFieldValidator>
                     </p>
                     <p>
+                        <asp:Label ID="NumeroAlbumLabel" runat="server" AssociatedControlID="NumeroAlbum">Numéros d'album :</asp:Label>
+                        <asp:TextBox ID="NumeroAlbum" runat="server" CssClass="textEntry"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="NumeroAlbumRequired" runat="server" ControlToValidate="NumeroAlbum" 
+                             CssClass="failureNotification" ErrorMessage="Un numéro d'album est requis." ToolTip="Un numéro d'album est requis." 
+                             ValidationGroup="DeposValidationGroup">*</asp:RequiredFieldValidator>
+                    </p>
+                    <p>
                         <asp:Label ID="PathLabel" runat="server" AssociatedControlID="Path">Path :</asp:Label>
                         <asp:TextBox ID="Path" runat="server" CssClass="Entry"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="PathRequired" runat="server" ControlToValidate="Path" 
