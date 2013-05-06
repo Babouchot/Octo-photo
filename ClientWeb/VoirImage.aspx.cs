@@ -53,9 +53,9 @@ namespace ClientWeb
             ImageCourante.ImageUrl = "VoirImage.aspx?ImageID=" + ImageIDBox.Text;
         }
 
-        protected void Authentifier_Click(object sender, EventArgs e)
+       /* protected void Authentifier_Click(object sender, EventArgs e)
         {
             Session["user"] = UserTextBox.Text;
-        }
+        }*/
     }
 }
