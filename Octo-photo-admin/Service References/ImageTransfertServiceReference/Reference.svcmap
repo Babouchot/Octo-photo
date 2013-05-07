@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ad185842-65d2-4e02-92b8-a8825a2c603e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:1655/ImageTransfert.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ImageTransfert.wsdl" MetadataType="Wsdl" ID="4983c79b-892c-4261-b343-69065816bbcb" SourceId="1" SourceUrl="http://localhost:1655/ImageTransfert.svc?wsdl" />
+    <MetadataFile FileName="ImageTransfert.xsd" MetadataType="Schema" ID="7724a1d5-fa92-45c8-9c6d-b0fb98f3ad56" SourceId="1" SourceUrl="http://localhost:1655/ImageTransfert.svc?xsd=xsd1" />
+    <MetadataFile FileName="ImageTransfert1.xsd" MetadataType="Schema" ID="da625458-b23f-4a82-85d0-5354d832a5ac" SourceId="1" SourceUrl="http://localhost:1655/ImageTransfert.svc?xsd=xsd0" />
+    <MetadataFile FileName="ImageTransfert2.xsd" MetadataType="Schema" ID="d43c9f81-501c-409e-8f02-f1b9b25d0177" SourceId="1" SourceUrl="http://localhost:1655/ImageTransfert.svc?xsd=xsd3" />
+    <MetadataFile FileName="ImageTransfert3.xsd" MetadataType="Schema" ID="3e3de97f-003f-4d7a-a049-794494bbe831" SourceId="1" SourceUrl="http://localhost:1655/ImageTransfert.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
