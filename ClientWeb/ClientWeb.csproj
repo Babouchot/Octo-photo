@@ -174,6 +174,12 @@
   <ItemGroup>
     <None Include="Service References\ImageTransfertServiceReference\ImageTransfert.wsdl" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Octo-photo-library\Octo-photo-library.csproj">
+      <Project>{B8DB6ACD-5D46-4D87-8D19-D04A24DC2F77}</Project>
+      <Name>Octo-photo-library</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
