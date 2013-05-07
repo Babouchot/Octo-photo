@@ -2,6 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octo-photo-admin", "Octo-photo-admin\Octo-photo-admin.csproj", "{083BE7EC-47A9-4A50-9FAA-17D206B9D2C3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C63FB4C3-B40F-4A6E-8375-34BCBD3B2549} = {C63FB4C3-B40F-4A6E-8375-34BCBD3B2549}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octo-photo-library", "Octo-photo-library\Octo-photo-library.csproj", "{B8DB6ACD-5D46-4D87-8D19-D04A24DC2F77}"
 EndProject
@@ -22,6 +25,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientWPF", "ClientWPF\ClientWPF.csproj", "{73A50610-ECE6-41FD-9459-F6792E53FEE7}"
 EndProject
 Global
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms

@@ -17,6 +17,15 @@ namespace Octo_photo_wcf
 
         [OperationContract]
         ImageDownloadResponse DownloadImage(ImageDownloadRequest data);
+
+        [OperationContract]
+        void deleteUser(int id);
+
+        [OperationContract]
+        void deleteAlbum(int id);
+
+        [OperationContract]
+        void deletePhoto(int id);
     }
     [MessageContract]
     public class ImageUploadRequest
