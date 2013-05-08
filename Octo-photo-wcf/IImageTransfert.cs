@@ -26,6 +26,9 @@ namespace Octo_photo_wcf
 
         [OperationContract]
         void deletePhoto(int id);
+
+        [OperationContract]
+        byte[][] getAlbum(int id);
     }
     [MessageContract]
     public class ImageUploadRequest

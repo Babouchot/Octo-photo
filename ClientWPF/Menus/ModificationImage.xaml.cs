@@ -117,6 +117,9 @@ namespace ClientWPF
         {
             //todo : charger les fichier un a un dans la listbox supérieur
             Debug.WriteLine("download");
+            ImageTransfertServiceReference.ImageTransfertClient transfertService =
+                new ImageTransfertServiceReference.ImageTransfertClient();
+            byte[][] images = transfertService.getAlbum(int.Parse(numeroDownloadAlbum.Text));
         }
 
         private void Save_Click(object sender, EventArgs e)
