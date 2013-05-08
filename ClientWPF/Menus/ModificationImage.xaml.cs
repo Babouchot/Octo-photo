@@ -138,25 +138,33 @@ namespace ClientWPF
 
         private void Save_Click(object sender, EventArgs e)
         {
-            //todo : sauvgarder les modif sur le serveur en uploadand les images ajouté.
-            Debug.WriteLine("save");
-            foreach (ImageObjet imgO in imageCollection1)
+            try
             {
-                //on supprime les image que l'on veut mettre a jour
+                int numAlbum = int.Parse(numeroSaveAlbum.Text);
                 ImageTransfertServiceReference.ImageTransfertClient transfertService = new ImageTransfertServiceReference.ImageTransfertClient();
-                transfertService.deletePhotoNom(imgO.Nom);
+                transfertService.deletePhotoInAlbum(numAlbum);
+                foreach (ImageObjet imgO in imageCollection1)
+                {
+                    //on supprime les image que l'on veut mettre a jour
+                    transfertService.deletePhotoNom(imgO.Nom);
+      
 
-                //on les ré-upload
-                MemoryStream imageStream = new MemoryStream(imgO.Image);
-                Octo_photo_wcf.ImageInfo info = new Octo_photo_wcf.ImageInfo();
-                info.ID = imgO.Nom;
-                info.idAlbum = int.Parse(numeroSaveAlbum.Text);
+                    //on les ré-upload
+                    MemoryStream imageStream = new MemoryStream(imgO.Image);
+                    Octo_photo_wcf.ImageInfo info = new Octo_photo_wcf.ImageInfo();
+                    info.ID = imgO.Nom;
+                    info.idAlbum = numAlbum;
 
-                ImageTransfertServiceReference.ImageUploadRequest request = new ImageTransfertServiceReference.ImageUploadRequest();
-                request.ImageData = imageStream;
-                request.ImageInfo = info;
+                    ImageTransfertServiceReference.ImageUploadRequest request = new ImageTransfertServiceReference.ImageUploadRequest();
+                    request.ImageData = imageStream;
+                    request.ImageInfo = info;
 
-                transfertService.UploadImage(info, imageStream);
+                    transfertService.UploadImage(info, imageStream);
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Le numéro d'album n'est pas un nombre");
             }
         }
 

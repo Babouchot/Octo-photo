@@ -216,6 +216,30 @@ namespace Octo_photo_library
             }
         }
 
+        private void executeSimpleSQL(SqlCommand commande)
+        {
+            try
+            {
+                // connexion au serveur
+                string connectionStr = bdConec;
+
+                // creation des object SqlConnection, SqlCommand
+                connexion = new SqlConnection(connectionStr);
+                connexion.Open();
+
+                // construit la requête 
+                commande.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erreur :" + e.Message);
+            }
+            finally
+            {
+                // dans tous les cas on ferme la connexion
+                connexion.Close();
+            }
+        }
         public void deleteAlbum(int id)
         {
             try
@@ -242,6 +266,36 @@ namespace Octo_photo_library
                 // dans tous les cas on ferme la connexion
                 connexion.Close();
             }
+        }
+
+        public void deletePhotoInAlbum(int id)
+        {
+            try
+            {
+                // connexion au serveur
+                string connectionStr = bdConec;
+
+                // creation des object SqlConnection, SqlCommand
+                connexion = new SqlConnection(connectionStr);
+                connexion.Open();
+
+                // construit la requête                 
+                SqlCommand deletePhotoInAlbum = new SqlCommand(
+                    "DELETE FROM Photo WHERE idAlbum = @idAlbum", connexion);
+                deletePhotoInAlbum.Parameters.Add("@idAlbum", SqlDbType.Int).Value = id;
+
+                deletePhotoInAlbum.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erreur :" + e.Message);
+            }
+            finally
+            {
+                // dans tous les cas on ferme la connexion
+                connexion.Close();
+            }
+
         }
 
         public void deletePhoto(int id)
