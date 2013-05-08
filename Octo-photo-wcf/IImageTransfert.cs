@@ -28,7 +28,10 @@ namespace Octo_photo_wcf
         void deletePhoto(int id);
 
         [OperationContract]
-        byte[][] getAlbum(int id);
+        String[] getAlbum(int id);
+
+        [OperationContract]
+        int[] getUserAlbum(int id);
     }
     [MessageContract]
     public class ImageUploadRequest

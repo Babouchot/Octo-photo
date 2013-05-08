@@ -54,9 +54,13 @@ namespace Octo_photo_wcf
             bdAccess.deletePhoto(id);
         }
 
-        public byte[][] getAlbum(int idAlbum)
+        public String[] getAlbum(int idAlbum)
         {
             return bdAccess.getAlbum(idAlbum);
+        }
+        public int[] getUserAlbum(int idUser)
+        {
+            return bdAccess.getUserAlbum(idUser);
         }
     }
 }
