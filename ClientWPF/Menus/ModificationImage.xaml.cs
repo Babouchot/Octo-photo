@@ -39,10 +39,6 @@ namespace ClientWPF
             }
             // On crée notre collection d'image et on y ajoute deux images
             imageCollection1 = new ImageCollection();
-            imageCollection1.Add(new ImageObjet("Chrysanthemum",
-            lireFichier(@"d:\Chrysanthemum.jpg")));
-            imageCollection1.Add(new ImageObjet("Hydrangeas",
-            lireFichier(@"d:\Hydrangeas.jpg")));
             // On lie la collection ObjectDataProvider déclaré dans le fichier XAML
             ObjectDataProvider imageSource = (ObjectDataProvider)FindResource("ImageCollection1");
             imageSource.ObjectInstance = imageCollection1;
@@ -121,6 +117,9 @@ namespace ClientWPF
         {
             //todo : charger les fichier un a un dans la listbox supérieur
             Debug.WriteLine("download");
+            ImageTransfertServiceReference.ImageTransfertClient transfertService =
+                new ImageTransfertServiceReference.ImageTransfertClient();
+            byte[][] images = transfertService.getAlbum(int.Parse(numeroDownloadAlbum.Text));
         }
 
         private void Save_Click(object sender, EventArgs e)

@@ -66,6 +66,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -87,6 +89,11 @@
     <Compile Include="ISwitchable.cs" />
     <Compile Include="PageSwitcher.xaml.cs">
       <DependentUpon>PageSwitcher.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ImageTransfertServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Switcher.cs" />
     <Compile Include="App.xaml.cs">
@@ -160,12 +167,29 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="ClientWPF_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\ImageTransfertServiceReference\ImageTransfert.wsdl" />
+    <None Include="Service References\ImageTransfertServiceReference\ImageTransfert.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ImageTransfertServiceReference\ImageTransfert1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ImageTransfertServiceReference\ImageTransfert2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ImageTransfertServiceReference\ImageTransfert3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ImageTransfertServiceReference\ImageTransfert4.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
@@ -200,6 +224,21 @@
       <Project>{C63FB4C3-B40F-4A6E-8375-34BCBD3B2549}</Project>
       <Name>Octo-photo-wcf</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ImageTransfertServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ImageTransfertServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ImageTransfertServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ImageTransfertServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
