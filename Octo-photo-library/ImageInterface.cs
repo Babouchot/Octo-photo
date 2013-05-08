@@ -89,10 +89,11 @@ namespace Octo_photo_library
         }
 
         // récupération d'une image de la base à l'aide d'un DataReader
-        public List<byte[]> getAlbum(int albumID)
+        public byte[][] getAlbum(int albumID)
         {
-            List<byte[]> imageBlob = null;
+            byte[][] imageBlob = null;
             byte[] blob = null;
+
             try
             {
                 // connexion au serveur
@@ -113,7 +114,6 @@ namespace Octo_photo_library
                 SqlDataReader myReader =
                 getAlbum.ExecuteReader(CommandBehavior.SequentialAccess);
                 int e = 0;
-                imageBlob = new List<byte[]>();
 
                 while (myReader.Read())
                 {
@@ -123,7 +123,8 @@ namespace Octo_photo_library
                     // récupére le blob de la BDD et le copie dans la variable blob
                     myReader.GetBytes(2, 0, blob, 0, size);
                     //on ajoute au tableau de blob le blob courant
-                    imageBlob.Add(blob);
+                    imageBlob[e] = blob;
+                    e++;
                 }
             }
             catch (Exception e)
