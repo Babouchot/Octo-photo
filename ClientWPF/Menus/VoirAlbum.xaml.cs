@@ -86,7 +86,7 @@ namespace ClientWPF
                 {
                     ImageTransfertServiceReference.ImageTransfertClient imageTransfertService = new ImageTransfertServiceReference.ImageTransfertClient();
 
-                    Octo_photo_wcf.ImageInfo info = new Octo_photo_wcf.ImageInfo();
+                    ImageTransfertServiceReference.ImageInfo info = new ImageTransfertServiceReference.ImageInfo();
                     info.ID = s;
                     ImageTransfertServiceReference.ImageDownloadResponse reponse = new ImageTransfertServiceReference.ImageDownloadResponse();
 

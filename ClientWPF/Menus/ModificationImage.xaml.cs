@@ -122,7 +122,7 @@ namespace ClientWPF
             {
                 ImageTransfertServiceReference.ImageTransfertClient imageTransfertService = new ImageTransfertServiceReference.ImageTransfertClient();
 
-                Octo_photo_wcf.ImageInfo info = new Octo_photo_wcf.ImageInfo();
+                ImageTransfertServiceReference.ImageInfo info = new ImageTransfertServiceReference.ImageInfo();
                 info.ID = s;
                 ImageTransfertServiceReference.ImageDownloadResponse reponse = new ImageTransfertServiceReference.ImageDownloadResponse();
 
@@ -142,16 +142,13 @@ namespace ClientWPF
             {
                 int numAlbum = int.Parse(numeroSaveAlbum.Text);
                 ImageTransfertServiceReference.ImageTransfertClient transfertService = new ImageTransfertServiceReference.ImageTransfertClient();
+                //on remmet l'album à neuf
                 transfertService.deletePhotoInAlbum(numAlbum);
                 foreach (ImageObjet imgO in imageCollection1)
                 {
-                    //on supprime les image que l'on veut mettre a jour
-                    transfertService.deletePhotoNom(imgO.Nom);
-      
-
                     //on les ré-upload
                     MemoryStream imageStream = new MemoryStream(imgO.Image);
-                    Octo_photo_wcf.ImageInfo info = new Octo_photo_wcf.ImageInfo();
+                    ImageTransfertServiceReference.ImageInfo info = new ImageTransfertServiceReference.ImageInfo();
                     info.ID = imgO.Nom;
                     info.idAlbum = numAlbum;
 

@@ -12,20 +12,10 @@ namespace ClientWPF
 {
 	public partial class MainMenu : UserControl, ISwitchable
 	{
-
-        //LoginWindowForm loginForm;
-        //RegisterForm registerForm;
-
 		public MainMenu()
 		{
             
 			InitializeComponent();
-
-            //loginForm = new LoginWindowForm();
-            //registerForm = new RegisterForm();
-
-            //loginForm.SubmitClicked += new EventHandler(loginWindowForm_SubmitClicked);
-            //registerForm.SubmitClicked += new EventHandler(registerForm_SubmitClicked);
 		}
 
 		private void modifierImageButton_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -42,20 +32,9 @@ namespace ClientWPF
             Switcher.Switch(new CreerAlbum());
         }
 
-
-        //private void ShowMessageBox(string title, string message, MessageBoxIcon icon)
-        //{
-            //MessageBoxChildWindow messageWindow =
-            //    new MessageBoxChildWindow(title, message, MessageBoxButtons.Ok, icon);
-
-            //messageWindow.Show();
-        //}
-
         #region Event For Child Window
         private void loginWindowForm_SubmitClicked(object sender, EventArgs e)
         {
-            //ShowMessageBox("Login Successful", "Welcome, " + loginForm.NameText, MessageBoxIcon.Information);
-
         }
 
         private void registerForm_SubmitClicked(object sender, EventArgs e)

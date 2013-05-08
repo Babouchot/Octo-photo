@@ -124,10 +124,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Menus\Option.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Menus\Register.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -149,9 +145,6 @@
     </Compile>
     <Compile Include="Menus\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Menus\Option.xaml.cs">
-      <DependentUpon>Option.xaml</DependentUpon>
     </Compile>
     <Compile Include="Menus\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
@@ -224,12 +217,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Octo-photo-wcf\Octo-photo-wcf.csproj">
-      <Project>{C63FB4C3-B40F-4A6E-8375-34BCBD3B2549}</Project>
-      <Name>Octo-photo-wcf</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ImageTransfertServiceReference\" />

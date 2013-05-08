@@ -9,7 +9,68 @@
 //------------------------------------------------------------------------------
 
 namespace ClientWPF.ImageTransfertServiceReference {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ImageInfo", Namespace="http://schemas.datacontract.org/2004/07/Octo_photo_wcf")]
+    [System.SerializableAttribute()]
+    public partial class ImageInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private string IDField;
+        
+        private int idAlbumField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public string ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IDField, value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public int idAlbum {
+            get {
+                return this.idAlbumField;
+            }
+            set {
+                if ((this.idAlbumField.Equals(value) != true)) {
+                    this.idAlbumField = value;
+                    this.RaisePropertyChanged("idAlbum");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ImageTransfertServiceReference.IImageTransfert")]
@@ -58,7 +119,7 @@ namespace ClientWPF.ImageTransfertServiceReference {
     public partial class ImageUploadRequest {
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
-        public Octo_photo_wcf.ImageInfo ImageInfo;
+        public ClientWPF.ImageTransfertServiceReference.ImageInfo ImageInfo;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
         public System.IO.Stream ImageData;
@@ -66,7 +127,7 @@ namespace ClientWPF.ImageTransfertServiceReference {
         public ImageUploadRequest() {
         }
         
-        public ImageUploadRequest(Octo_photo_wcf.ImageInfo ImageInfo, System.IO.Stream ImageData) {
+        public ImageUploadRequest(ClientWPF.ImageTransfertServiceReference.ImageInfo ImageInfo, System.IO.Stream ImageData) {
             this.ImageInfo = ImageInfo;
             this.ImageData = ImageData;
         }
@@ -89,12 +150,12 @@ namespace ClientWPF.ImageTransfertServiceReference {
     public partial class ImageDownloadRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Octo_photo_wcf.ImageInfo ImageInfo;
+        public ClientWPF.ImageTransfertServiceReference.ImageInfo ImageInfo;
         
         public ImageDownloadRequest() {
         }
         
-        public ImageDownloadRequest(Octo_photo_wcf.ImageInfo ImageInfo) {
+        public ImageDownloadRequest(ClientWPF.ImageTransfertServiceReference.ImageInfo ImageInfo) {
             this.ImageInfo = ImageInfo;
         }
     }
@@ -148,7 +209,7 @@ namespace ClientWPF.ImageTransfertServiceReference {
             return base.Channel.UploadImage(request);
         }
         
-        public void UploadImage(Octo_photo_wcf.ImageInfo ImageInfo, System.IO.Stream ImageData) {
+        public void UploadImage(ClientWPF.ImageTransfertServiceReference.ImageInfo ImageInfo, System.IO.Stream ImageData) {
             ClientWPF.ImageTransfertServiceReference.ImageUploadRequest inValue = new ClientWPF.ImageTransfertServiceReference.ImageUploadRequest();
             inValue.ImageInfo = ImageInfo;
             inValue.ImageData = ImageData;
@@ -160,7 +221,7 @@ namespace ClientWPF.ImageTransfertServiceReference {
             return base.Channel.DownloadImage(request);
         }
         
-        public System.IO.Stream DownloadImage(Octo_photo_wcf.ImageInfo ImageInfo) {
+        public System.IO.Stream DownloadImage(ClientWPF.ImageTransfertServiceReference.ImageInfo ImageInfo) {
             ClientWPF.ImageTransfertServiceReference.ImageDownloadRequest inValue = new ClientWPF.ImageTransfertServiceReference.ImageDownloadRequest();
             inValue.ImageInfo = ImageInfo;
             ClientWPF.ImageTransfertServiceReference.ImageDownloadResponse retVal = ((ClientWPF.ImageTransfertServiceReference.IImageTransfert)(this)).DownloadImage(inValue);
