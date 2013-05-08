@@ -71,7 +71,7 @@
         <TextBox x:Name="numeroDownloadAlbum" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,562,5" Height="25" Grid.Row="3" Width="71" />
         <Button HorizontalAlignment="Right" Margin="0,0,639,5" VerticalAlignment="Bottom" Width="149" Content="Charger Album numéro &gt;" Height="25" Click="DownloadAlbum_Click" Grid.Row="3" />
         <Button HorizontalAlignment="Center" Margin="310,0,326,5" VerticalAlignment="Bottom" Width="164" Content="Sauvgarder Album numéro &gt;" Height="25" Click="Save_Click" Grid.Row="3" />
-        <TextBox Height="25" HorizontalAlignment="Right" Margin="0,0,249,3" Name="numeroSAveAlbum" VerticalAlignment="Bottom" Width="71" Grid.Row="3" />
+        <TextBox Height="25" HorizontalAlignment="Right" Margin="0,0,249,3" Name="numeroSaveAlbum" VerticalAlignment="Bottom" Width="71" Grid.Row="3" />
     </Grid>
     
 
