@@ -10,7 +10,7 @@ namespace Octo_photo_library
     public class ImageInterface
     {
         SqlConnection connexion;
-        string bdConec = "Server=YXXX;Database=DBMiniProjet;Integrated Security=true;";
+        string bdConec = "Server=ADMIN-MSI;Database=DBMiniProjet;Integrated Security=true;";
 
         public void addImage(string ID, int idAlbum, byte[] image)
         {            
