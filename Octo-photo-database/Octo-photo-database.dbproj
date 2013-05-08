@@ -162,6 +162,8 @@
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Utilisateur.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Photo.table.sql">
       <SubType>Code</SubType>

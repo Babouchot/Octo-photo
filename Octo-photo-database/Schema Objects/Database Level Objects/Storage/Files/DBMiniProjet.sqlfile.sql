@@ -1,3 +1,5 @@
 ﻿ALTER DATABASE [$(DatabaseName)]
-    ADD FILE (NAME = [DBMiniProjet], FILENAME = '$(DefaultDataPath)$(DatabaseName).mdf', FILEGROWTH = 1024 KB) TO FILEGROUP [PRIMARY];
+    ADD FILE (NAME = [DBMiniProjet], FILENAME = 'C:\Program Files (x86)\Microsoft SQL Server\MSSQL10_50.MSSQLSERVER\MSSQL\DATA\DBMiniProjet.mdf', SIZE = 567296 KB, FILEGROWTH = 1024 KB) TO FILEGROUP [PRIMARY];
+
+
 

@@ -1,33 +1,42 @@
 ﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Ink;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Shapes;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using System.Text;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.IO;
+using System.Diagnostics;
 
 namespace ClientWPF
 {
-    /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public partial class ModificationImage : UserControl, ISwitchable
     {
         private ImageCollection imageCollection1;
-        private ImageCollection imageCollection2;
-
-        public MainWindow()
+        private ImageCollection imageCollectionLocal;
+        public ModificationImage()
         {
             InitializeComponent();
 
+            //lecture des fichiers image en local.
+            imageCollectionLocal = new ImageCollection();
+            string[] files = Directory.GetFiles(@"C:\Users\Public\Pictures\Octo-Photo Images"); /// Stocke la liste des fichiers
+            foreach (string s in files)
+            {
+                if (System.IO.Path.GetExtension(s).ToUpper().Equals(".JPG"))
+                {
+                    imageCollectionLocal.Add(new ImageObjet(System.IO.Path.GetFileNameWithoutExtension(s), lireFichier(s)));
+                }
+
+            }
             // On crée notre collection d'image et on y ajoute deux images
             imageCollection1 = new ImageCollection();
             imageCollection1.Add(new ImageObjet("Chrysanthemum",
@@ -38,15 +47,9 @@ namespace ClientWPF
             ObjectDataProvider imageSource = (ObjectDataProvider)FindResource("ImageCollection1");
             imageSource.ObjectInstance = imageCollection1;
 
-            // On crée notre collection d'image et on y ajoute deux images
-            imageCollection2 = new ImageCollection();
-            imageCollection2.Add(new ImageObjet("Penguins",
-            lireFichier(@"d:\Penguins.jpg")));
-            imageCollection2.Add(new ImageObjet("Koala",
-            lireFichier(@"d:\Koala.jpg")));
             // On lie la collectionau ObjectDataProvider déclaré dans le fichier XAML
             ObjectDataProvider imageSource2 = (ObjectDataProvider)FindResource("ImageCollection2");
-            imageSource2.ObjectInstance = imageCollection2;
+            imageSource2.ObjectInstance = imageCollectionLocal;
         }
 
         ListBox dragSource = null;
@@ -112,6 +115,30 @@ namespace ClientWPF
             BinaryReader br = new BinaryReader(fileStream);
             data = br.ReadBytes(nbBytes);
             return data;
-        } 
+        }
+
+        private void DownloadAlbum_Click(object sender, EventArgs e)
+        {
+            //todo : charger les fichier un a un dans la listbox supérieur
+            Debug.WriteLine("download");
+        }
+
+        private void Save_Click(object sender, EventArgs e)
+        {
+            //todo : sauvgarder les modif sur le serveur en uploadand les images ajouté.
+            Debug.WriteLine("save");
+        }
+
+        #region ISwitchable Members
+        public void UtilizeState(object state)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Switcher.Switch(new MainMenu());
+        }
+        #endregion
     }
 }
