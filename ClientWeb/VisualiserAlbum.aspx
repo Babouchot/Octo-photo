@@ -59,100 +59,25 @@
                 Text="Nouvel album" onclick="NewAlbum_Click" />
         </p>
         <p>
-                <asp:ListView ID="albumImagesView" runat="server" 
-                onselectedindexchanged="albumImages_SelectedIndexChanged" 
-                DataSourceID="SqlDataSource1">
-                    <AlternatingItemTemplate>
-                        <span style="">blob:
-                        <asp:Label ID="blobLabel" runat="server" Text='<%# Eval("blob") %>' />
-                        <br />
-                        <asp:Button ID="Button1" runat="server" Text="Voir l'image" />
-                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# byteArrayToImage((byte[])Eval("blob")) %>' />
-                        <br />
-                        nom de la photo:
-                        <asp:Label ID="nomPhotoLabel" runat="server" Text='<%# Eval("nomPhoto") %>' />
-                        <br />
-                        <br />
-                        <br />
-                        </span>
-                    </AlternatingItemTemplate>
-                    <EditItemTemplate>
-                        <span style="">blob:
-                        <asp:TextBox ID="blobTextBox" runat="server" Text='<%# Bind("blob") %>' />
-                        <br />
-                        nomPhoto:
-                        <asp:TextBox ID="nomPhotoTextBox" runat="server" 
-                            Text='<%# Bind("nomPhoto") %>' />
-                        <br />
-                        <asp:Button ID="UpdateButton" runat="server" CommandName="Update" 
-                            Text="Mettre à jour" />
-                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" 
-                            Text="Annuler" />
-                        <br />
-                        <br />
-                        </span>
-                    </EditItemTemplate>
-                    <EmptyDataTemplate>
-                        <span>Aucune donnée n&#39;a été retournée.</span>
-                    </EmptyDataTemplate>
-                    <InsertItemTemplate>
-                        <span style="">blob:
-                        <asp:TextBox ID="blobTextBox" runat="server" Text='<%# Bind("blob") %>' />
-                        <br />
-                        nomPhoto:
-                        <asp:TextBox ID="nomPhotoTextBox" runat="server" 
-                            Text='<%# Bind("nomPhoto") %>' />
-                        <br />
-                        <asp:Button ID="InsertButton" runat="server" CommandName="Insert" 
-                            Text="Insérer" />
-                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" 
-                            Text="Désactiver" />
-                        <br />
-                        <br />
-                        </span>
-                    </InsertItemTemplate>
-                    <ItemTemplate>
-                        <span style="">blob:
-                        <asp:Label ID="blobLabel" runat="server" Text='<%# Eval("blob") %>' />
-                        <br />
-                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# byteArrayToImage((byte[])Eval("blob")) %>' />
-                        <br />
-                        nom de la photo:
-                        <asp:Label ID="nomPhotoLabel" runat="server" Text='<%# Eval("nomPhoto") %>' />
-                        <br />
-                        <br />
-                        <br />
-                        </span>
-                    </ItemTemplate>
-                    <LayoutTemplate>
-                        <div ID="itemPlaceholderContainer" runat="server" style="">
-                            <span runat="server" id="itemPlaceholder" />
-                        </div>
-                        <div style="">
-                        </div>
-                    </LayoutTemplate>
-                    <SelectedItemTemplate>
-                        <span style="">blob:
-                        <asp:Label ID="blobLabel" runat="server" Text='<%# Eval("blob") %>' />
-                        <br />
-                        nomPhoto:
-                        <asp:Label ID="nomPhotoLabel" runat="server" Text='<%# Eval("nomPhoto") %>' />
-                        <br />
-                        <br />
-                        </span>
-                    </SelectedItemTemplate>
-            </asp:ListView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+         <fieldset class="images">
+        <asp:Label ID="LabelImage" runat="server" AssociatedControlID="DropDownList1">Images contenues dans l'album :</asp:Label>
+            <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource3" 
+                    DataTextField="nomPhoto" DataValueField="nomPhoto">
+                    </asp:DropDownList>
+            <asp:SqlDataSource ID="SqlDataSource3" runat="server" 
                 ConnectionString="<%$ ConnectionStrings:DBMiniProjetConnectionString %>" 
-                
-                
-                    SelectCommand="SELECT [blob], [nomPhoto] FROM [Photo] WHERE ([idAlbum] = @idAlbum2)">
+                SelectCommand="SELECT [nomPhoto] FROM [Photo] WHERE ([idAlbum] = @idAlbum)">
                 <SelectParameters>
-                    <asp:ControlParameter ControlID="DropDownList1" Name="idAlbum2" 
+                    <asp:ControlParameter ControlID="DropDownList1" Name="idAlbum" 
                         PropertyName="SelectedValue" Type="Int32" />
                 </SelectParameters>
             </asp:SqlDataSource>
+            <asp:Button ID="Button2" runat="server" Text="Voir l'image" 
+                onclick="Button2_Click" />
+        </fieldset>
         </p>
+        <asp:Image ID="ImageView" runat="server" />
+
     </div>
     </form>
 </body>
