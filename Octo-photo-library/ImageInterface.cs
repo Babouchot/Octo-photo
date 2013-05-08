@@ -10,7 +10,7 @@ namespace Octo_photo_library
     public class ImageInterface
     {
         SqlConnection connexion;
-        string bdConec = "Server=YXXX;Database=DBMiniProjet;Integrated Security=true;";
+        string bdConec = "Server=MAUREILL;Database=DBMiniProjet;Integrated Security=true;";
 
         public void addImage(string ID, int idAlbum, byte[] image)
         {            
@@ -86,6 +86,90 @@ namespace Octo_photo_library
                 connexion.Close();
             }
             return blob;
+        }
+
+        public void deleteUser(int id)
+        {
+            try
+            {
+                // connexion au serveur
+                string connectionStr = bdConec;
+
+                // creation des object SqlConnection, SqlCommand et DataReader 
+                connexion = new SqlConnection(connectionStr);
+                connexion.Open();
+
+                // construit la requête 
+                SqlCommand deleteUser = new SqlCommand(
+                    "DELETE FROM Utilisateur WHERE idUtilisateur = @idUtilisateur", connexion);
+                deleteUser.Parameters.Add("@idUtilisateur", SqlDbType.Int).Value = id;
+                deleteUser.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erreur :" + e.Message);
+            }
+            finally
+            {
+                // dans tous les cas on ferme la connexion
+                connexion.Close();
+            }
+        }
+
+        public void deleteAlbum(int id)
+        {
+            try
+            {
+                // connexion au serveur
+                string connectionStr = bdConec;
+
+                // creation des object SqlConnection, SqlCommand
+                connexion = new SqlConnection(connectionStr);
+                connexion.Open();
+
+                // construit la requête 
+                SqlCommand deleteAlbum = new SqlCommand(
+                    "DELETE FROM Album WHERE idAlbum = @idAlbum", connexion);
+                deleteAlbum.Parameters.Add("@idAlbum", SqlDbType.Int).Value = id;
+                deleteAlbum.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erreur :" + e.Message);
+            }
+            finally
+            {
+                // dans tous les cas on ferme la connexion
+                connexion.Close();
+            }
+        }
+
+        public void deletePhoto(int id)
+        {
+            try
+            {
+                // connexion au serveur
+                string connectionStr = bdConec;
+
+                // creation des object SqlConnection, SqlCommand
+                connexion = new SqlConnection(connectionStr);
+                connexion.Open();
+
+                // construit la requête 
+                SqlCommand deletePhoto = new SqlCommand(
+                    "DELETE FROM Photo WHERE id = @id", connexion);
+                deletePhoto.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                deletePhoto.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erreur :" + e.Message);
+            }
+            finally
+            {
+                // dans tous les cas on ferme la connexion
+                connexion.Close();
+            }
         }
     }
 }

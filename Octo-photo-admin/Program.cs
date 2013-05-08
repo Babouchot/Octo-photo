@@ -20,9 +20,12 @@ namespace Octo_photo_admin
                 "rm album   Supprimer un album photo de la base de données\n" +
                 "rm photo   Supprimer une photo de la base de données\n");
 
+            ImageTransfertServiceReference.ImageTransfertClient imageTransfertService =
+                new ImageTransfertServiceReference.ImageTransfertClient();
+
             while (true)
             {
-                Console.Write(">>>");
+                Console.Write(">>> ");
                 String line = Console.ReadLine();
                 switch (line)
                 {
@@ -30,13 +33,29 @@ namespace Octo_photo_admin
                         Console.WriteLine("Vous avez choisi de supprimer un utilisateur,\nveuillez spécifier son identifiant : ");
                         Console.Write("User ID : ");
                         String user = Console.ReadLine();
+                        try
+                        {
+                            imageTransfertService.deleteUser(int.Parse(user));
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("commande invalide : entrez un id (nombre entier)");
+                        }
                         Console.WriteLine();
                         break;
 
                     case "rm album":
                         Console.WriteLine("Vous avez choisi de supprimer un album,\nveuillez spécifier son identifiant : ");
-                        Console.Write("Nom de l'album : ");
-                        String nomAlbum = Console.ReadLine();
+                        Console.Write("ID de l'album : ");
+                        String album = Console.ReadLine();
+                        try
+                        {
+                            imageTransfertService.deleteAlbum(int.Parse(album));
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("commande invalide : entrez un id (nombre entier)");
+                        }
                         Console.WriteLine();
                         break;
 
@@ -44,6 +63,14 @@ namespace Octo_photo_admin
                         Console.WriteLine("Vous avez choisi de supprimer une photo,\nveuillez spécifier son identifiant : ");
                         Console.Write("ID de la photo : ");
                         String photo = Console.ReadLine();
+                        try
+                        {
+                            imageTransfertService.deletePhoto(int.Parse(photo));
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("commande invalide : entrez un id (nombre entier)");
+                        }
                         Console.WriteLine();
                         break;
 

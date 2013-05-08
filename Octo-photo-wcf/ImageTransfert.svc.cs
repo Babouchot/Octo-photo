@@ -38,5 +38,20 @@ namespace Octo_photo_wcf
             response.ImageData = imageStreamEnMemoire;
             return response;
         }
+
+        public void deleteUser(int id)
+        {
+            bdAccess.deleteUser(id);
+        }
+
+        public void deleteAlbum(int id)
+        {
+            bdAccess.deleteAlbum(id);
+        }
+
+        public void deletePhoto(int id)
+        {
+            bdAccess.deletePhoto(id);
+        }
     }
 }
