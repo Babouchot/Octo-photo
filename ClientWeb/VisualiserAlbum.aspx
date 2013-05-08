@@ -52,13 +52,13 @@
                     ConnectionString="<%$ ConnectionStrings:DBMiniProjetConnectionString %>" 
                     SelectCommand="SELECT [idUtilisateur] FROM [Utilisateur]">
                 </asp:SqlDataSource>
+                <asp:Button ID="ChangeUser" runat="server" OnClick="Visualiser_Click" Text="Changer d'utilisateur" />
                 <br />
                 <asp:Label ID="NumeroAlbumLabel" runat="server" AssociatedControlID="DropDownList1">Numéro d'album :</asp:Label>
             <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource2" 
                     DataTextField="idAlbum" DataValueField="idAlbum">
             </asp:DropDownList>
-            <asp:Button ID="VisButton" runat="server" OnClick="Visualiser_Click" Text="Visualiser"
-                ValidationGroup="DeposValidationGroup" />
+            <asp:Button ID="VisButton" runat="server" OnClick="Visualiser_Click" Text="Visualiser" />
             </p>
             <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
                 ConnectionString="<%$ ConnectionStrings:DBMiniProjetConnectionString %>" 

@@ -90,8 +90,17 @@ namespace ClientWeb.ImageTransfertServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/deleteAlbum", ReplyAction="http://tempuri.org/IImageTransfert/deleteAlbumResponse")]
         void deleteAlbum(int id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/createAlbum", ReplyAction="http://tempuri.org/IImageTransfert/createAlbumResponse")]
+        void createAlbum(string nom, int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/deletePhotoInAlbum", ReplyAction="http://tempuri.org/IImageTransfert/deletePhotoInAlbumResponse")]
+        void deletePhotoInAlbum(int id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/deletePhoto", ReplyAction="http://tempuri.org/IImageTransfert/deletePhotoResponse")]
         void deletePhoto(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/deletePhotoNom", ReplyAction="http://tempuri.org/IImageTransfert/deletePhotoNomResponse")]
+        void deletePhotoNom(string nom);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/getAlbum", ReplyAction="http://tempuri.org/IImageTransfert/getAlbumResponse")]
         string[] getAlbum(int id);
@@ -224,8 +233,20 @@ namespace ClientWeb.ImageTransfertServiceReference {
             base.Channel.deleteAlbum(id);
         }
         
+        public void createAlbum(string nom, int id) {
+            base.Channel.createAlbum(nom, id);
+        }
+        
+        public void deletePhotoInAlbum(int id) {
+            base.Channel.deletePhotoInAlbum(id);
+        }
+        
         public void deletePhoto(int id) {
             base.Channel.deletePhoto(id);
+        }
+        
+        public void deletePhotoNom(string nom) {
+            base.Channel.deletePhotoNom(nom);
         }
         
         public string[] getAlbum(int id) {

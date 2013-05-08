@@ -62,6 +62,8 @@ namespace ClientWeb
         {
             ImageTransfertServiceReference.ImageTransfertClient transfertClient =
                 new ImageTransfertServiceReference.ImageTransfertClient();
+            transfertClient.createAlbum(NewAlbumName.Text, int.Parse(DropDownList3.Text));
+            Response.Redirect(Request.RawUrl);
         }
 
         protected void Button2_Click(object sender, EventArgs e)
