@@ -27,6 +27,7 @@
     <MetadataFile FileName="ImageTransfert1.xsd" MetadataType="Schema" ID="66daf912-0429-4427-a371-7c5a0a9b6c00" SourceId="1" SourceUrl="http://localhost:1655/ImageTransfert.svc?xsd=xsd0" />
     <MetadataFile FileName="ImageTransfert2.xsd" MetadataType="Schema" ID="007611a0-93a6-450d-b7e9-1c61d9b31ad1" SourceId="1" SourceUrl="http://localhost:1655/ImageTransfert.svc?xsd=xsd3" />
     <MetadataFile FileName="ImageTransfert3.xsd" MetadataType="Schema" ID="aa1f01c1-e0da-445f-bbed-425376b37e20" SourceId="1" SourceUrl="http://localhost:1655/ImageTransfert.svc?xsd=xsd2" />
+    <MetadataFile FileName="ImageTransfert4.xsd" MetadataType="Schema" ID="a916507c-e8f2-4f25-aabc-4a0bbb690a01" SourceId="1" SourceUrl="http://localhost:1655/ImageTransfert.svc?xsd=xsd4" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

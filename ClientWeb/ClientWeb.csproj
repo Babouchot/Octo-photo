@@ -60,6 +60,9 @@
     <None Include="Service References\ImageTransfertServiceReference\ImageTransfert.disco" />
     <None Include="Service References\ImageTransfertServiceReference\configuration91.svcinfo" />
     <None Include="Service References\ImageTransfertServiceReference\configuration.svcinfo" />
+    <None Include="Service References\ImageTransfertServiceReference\ImageTransfert4.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ImageTransfertServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -71,6 +74,7 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="VisualiserAlbum.aspx" />
     <Content Include="VoirImage.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -157,6 +161,13 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="VisualiserAlbum.aspx.cs">
+      <DependentUpon>VisualiserAlbum.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VisualiserAlbum.aspx.designer.cs">
+      <DependentUpon>VisualiserAlbum.aspx</DependentUpon>
     </Compile>
     <Compile Include="VoirImage.aspx.cs">
       <DependentUpon>VoirImage.aspx</DependentUpon>

@@ -83,6 +83,18 @@ namespace ClientWeb.ImageTransfertServiceReference {
         // CODEGEN : La génération du contrat de message depuis le nom de wrapper (ImageDownloadRequest) du message ImageDownloadRequest ne correspond pas à la valeur par défaut (DownloadImage)
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/DownloadImage", ReplyAction="http://tempuri.org/IImageTransfert/DownloadImageResponse")]
         ClientWeb.ImageTransfertServiceReference.ImageDownloadResponse DownloadImage(ClientWeb.ImageTransfertServiceReference.ImageDownloadRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/deleteUser", ReplyAction="http://tempuri.org/IImageTransfert/deleteUserResponse")]
+        void deleteUser(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/deleteAlbum", ReplyAction="http://tempuri.org/IImageTransfert/deleteAlbumResponse")]
+        void deleteAlbum(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/deletePhoto", ReplyAction="http://tempuri.org/IImageTransfert/deletePhotoResponse")]
+        void deletePhoto(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/getAlbum", ReplyAction="http://tempuri.org/IImageTransfert/getAlbumResponse")]
+        byte[][] getAlbum(int id);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -199,6 +211,22 @@ namespace ClientWeb.ImageTransfertServiceReference {
             inValue.ImageInfo = ImageInfo;
             ClientWeb.ImageTransfertServiceReference.ImageDownloadResponse retVal = ((ClientWeb.ImageTransfertServiceReference.IImageTransfert)(this)).DownloadImage(inValue);
             return retVal.ImageData;
+        }
+        
+        public void deleteUser(int id) {
+            base.Channel.deleteUser(id);
+        }
+        
+        public void deleteAlbum(int id) {
+            base.Channel.deleteAlbum(id);
+        }
+        
+        public void deletePhoto(int id) {
+            base.Channel.deletePhoto(id);
+        }
+        
+        public byte[][] getAlbum(int id) {
+            return base.Channel.getAlbum(id);
         }
     }
 }
