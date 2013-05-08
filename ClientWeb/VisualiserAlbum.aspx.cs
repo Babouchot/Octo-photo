@@ -60,7 +60,8 @@ namespace ClientWeb
 
         protected void NewAlbum_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/VisualiserAlbum.aspx");
+            ImageTransfertServiceReference.ImageTransfertClient transfertClient =
+                new ImageTransfertServiceReference.ImageTransfertClient();
         }
 
         protected void Button2_Click(object sender, EventArgs e)

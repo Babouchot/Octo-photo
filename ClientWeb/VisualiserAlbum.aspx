@@ -43,6 +43,16 @@
     <div class="visualiserAlbum">
         <fieldset class="album">
             <p>
+                <asp:Label ID="Label1" runat="server" Text="Label">Utilisateur :</asp:Label>
+                <asp:DropDownList ID="DropDownList3" runat="server" 
+                    DataSourceID="SqlDataSource1" DataTextField="idUtilisateur" 
+                    DataValueField="idUtilisateur">
+                </asp:DropDownList>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+                    ConnectionString="<%$ ConnectionStrings:DBMiniProjetConnectionString %>" 
+                    SelectCommand="SELECT [idUtilisateur] FROM [Utilisateur]">
+                </asp:SqlDataSource>
+                <br />
                 <asp:Label ID="NumeroAlbumLabel" runat="server" AssociatedControlID="DropDownList1">Numéro d'album :</asp:Label>
             <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource2" 
                     DataTextField="idAlbum" DataValueField="idAlbum">
@@ -52,13 +62,20 @@
             </p>
             <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
                 ConnectionString="<%$ ConnectionStrings:DBMiniProjetConnectionString %>" 
-                SelectCommand="SELECT [idAlbum] FROM [Album]"></asp:SqlDataSource>
+                
+                SelectCommand="SELECT [idAlbum] FROM [Album] WHERE ([idUtilisateur] = @idUtilisateur)">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="DropDownList3" Name="idUtilisateur" 
+                        PropertyName="SelectedValue" Type="Int32" />
+                </SelectParameters>
+            </asp:SqlDataSource>
         </fieldset>
         <p class="submitButton">
+            <asp:Label ID="Label2" runat="server" Text="Label">Nom de l'album à créer : </asp:Label>
+            <asp:TextBox ID="NewAlbumName" runat="server"></asp:TextBox>
             <asp:Button ID="NewAlbum" runat="server" 
                 Text="Nouvel album" onclick="NewAlbum_Click" />
         </p>
-        <p>
          <fieldset class="images">
         <asp:Label ID="LabelImage" runat="server" AssociatedControlID="DropDownList1">Images contenues dans l'album :</asp:Label>
             <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource3" 
