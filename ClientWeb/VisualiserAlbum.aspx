@@ -40,22 +40,44 @@
             </Items>
         </asp:Menu>
     </div>
-    <asp:ValidationSummary ID="DeposValidationSummary" runat="server" CssClass="failureNotification" 
-                 ValidationGroup="DeposValidationGroup"/>
     <div class="visualiserAlbum">
         <fieldset class="album">
             <p>
-                <asp:Label ID="NumeroAlbumLabel" runat="server" AssociatedControlID="NumeroAlbum">Numéro d'album :</asp:Label>
-                <asp:TextBox ID="NumeroAlbum" runat="server" CssClass="textEntry"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="NumeroAlbumRequired" runat="server" ControlToValidate="NumeroAlbum"
-                    CssClass="failureNotification" ErrorMessage="Un numéro d'album est requis." ToolTip="Un numéro d'album est requis."
-                    ValidationGroup="DeposValidationGroup">*</asp:RequiredFieldValidator>
-            </p>
-        </fieldset>
-        <p class="submitButton">
+                <asp:Label ID="NumeroAlbumLabel" runat="server" AssociatedControlID="DropDownList1">Numéro d'album :</asp:Label>
+            <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource2" 
+                    DataTextField="idAlbum" DataValueField="idAlbum">
+            </asp:DropDownList>
             <asp:Button ID="VisButton" runat="server" OnClick="Visualiser_Click" Text="Visualiser"
                 ValidationGroup="DeposValidationGroup" />
+            </p>
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
+                ConnectionString="<%$ ConnectionStrings:DBMiniProjetConnectionString %>" 
+                SelectCommand="SELECT [idAlbum] FROM [Album]"></asp:SqlDataSource>
+        </fieldset>
+        <p class="submitButton">
+            <asp:Button ID="NewAlbum" runat="server" 
+                Text="Nouvel album" onclick="NewAlbum_Click" />
         </p>
+        <p>
+         <fieldset class="images">
+        <asp:Label ID="LabelImage" runat="server" AssociatedControlID="DropDownList1">Images contenues dans l'album :</asp:Label>
+            <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource3" 
+                    DataTextField="nomPhoto" DataValueField="nomPhoto">
+                    </asp:DropDownList>
+            <asp:SqlDataSource ID="SqlDataSource3" runat="server" 
+                ConnectionString="<%$ ConnectionStrings:DBMiniProjetConnectionString %>" 
+                SelectCommand="SELECT [nomPhoto] FROM [Photo] WHERE ([idAlbum] = @idAlbum)">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="DropDownList1" Name="idAlbum" 
+                        PropertyName="SelectedValue" Type="Int32" />
+                </SelectParameters>
+            </asp:SqlDataSource>
+            <asp:Button ID="Button2" runat="server" Text="Voir l'image" 
+                onclick="Button2_Click" />
+        </fieldset>
+        </p>
+        <asp:Image ID="ImageView" runat="server" />
+
     </div>
     </form>
 </body>
