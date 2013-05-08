@@ -115,8 +115,6 @@ namespace ClientWPF
 
         private void DownloadAlbum_Click(object sender, EventArgs e)
         {
-            //todo : charger les fichier un a un dans la listbox supérieur
-            Debug.WriteLine("download");
             ImageTransfertServiceReference.ImageTransfertClient transfertService = new ImageTransfertServiceReference.ImageTransfertClient();
             String[] images = transfertService.getAlbum(int.Parse(numeroDownloadAlbum.Text));
 
@@ -126,7 +124,6 @@ namespace ClientWPF
 
                 Octo_photo_wcf.ImageInfo info = new Octo_photo_wcf.ImageInfo();
                 info.ID = s;
-                info.idAlbum = 1;
                 ImageTransfertServiceReference.ImageDownloadResponse reponse = new ImageTransfertServiceReference.ImageDownloadResponse();
 
                 // Appel de notre web method
@@ -143,6 +140,24 @@ namespace ClientWPF
         {
             //todo : sauvgarder les modif sur le serveur en uploadand les images ajouté.
             Debug.WriteLine("save");
+            foreach (ImageObjet imgO in imageCollection1)
+            {
+                //on supprime les image que l'on veut mettre a jour
+                ImageTransfertServiceReference.ImageTransfertClient transfertService = new ImageTransfertServiceReference.ImageTransfertClient();
+                transfertService.deletePhotoNom(imgO.Nom);
+
+                //on les ré-upload
+                MemoryStream imageStream = new MemoryStream(imgO.Image);
+                Octo_photo_wcf.ImageInfo info = new Octo_photo_wcf.ImageInfo();
+                info.ID = imgO.Nom;
+                info.idAlbum = int.Parse(numeroSaveAlbum.Text);
+
+                ImageTransfertServiceReference.ImageUploadRequest request = new ImageTransfertServiceReference.ImageUploadRequest();
+                request.ImageData = imageStream;
+                request.ImageInfo = info;
+
+                transfertService.UploadImage(info, imageStream);
+            }
         }
 
         #region ISwitchable Members

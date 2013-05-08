@@ -154,17 +154,24 @@ namespace Octo_photo_library
 
                 // construit la requête 
                 SqlCommand getUserAlbum = new SqlCommand(
-                    "SELECT idAlbum " +
-                    "FROM Album" +
+                    "SELECT idAlbum, idUtilisateur " +
+                    "FROM Album " +
                     "WHERE idUtilisateur = @idUtilisateur", connexion);
                 getUserAlbum.Parameters.Add("@idUtilisateur", SqlDbType.Int).Value = userID;
-                int e = 0;
-                // exécution de la requête et création du reader
+
                 SqlDataReader myReader = getUserAlbum.ExecuteReader(CommandBehavior.SequentialAccess);
+                int e = 0;
+                List<int> listTmp = new List<int>();
 
                 while (myReader.Read())
                 {
-                    listeAlbum[e] = myReader.GetInt32(0);
+                    listTmp.Add(myReader.GetInt32(0));
+                }
+
+                listeAlbum = new int[listTmp.Count];
+                foreach (int i in listTmp)
+                {
+                    listeAlbum[e] = i;
                     e++;
                 }
             }
@@ -252,6 +259,33 @@ namespace Octo_photo_library
                 SqlCommand deletePhoto = new SqlCommand(
                     "DELETE FROM Photo WHERE id = @id", connexion);
                 deletePhoto.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                deletePhoto.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erreur :" + e.Message);
+            }
+            finally
+            {
+                // dans tous les cas on ferme la connexion
+                connexion.Close();
+            }
+        }
+        public void deletePhoto(String nom)
+        {
+            try
+            {
+                // connexion au serveur
+                string connectionStr = bdConec;
+
+                // creation des object SqlConnection, SqlCommand
+                connexion = new SqlConnection(connectionStr);
+                connexion.Open();
+
+                // construit la requête 
+                SqlCommand deletePhoto = new SqlCommand(
+                    "DELETE FROM Photo WHERE nomPhoto = @nomPhoto", connexion);
+                deletePhoto.Parameters.Add("@nomPhoto", SqlDbType.NChar, nom.Length).Value = nom;
                 deletePhoto.ExecuteNonQuery();
             }
             catch (Exception e)

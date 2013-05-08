@@ -61,6 +61,18 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="deletePhotoNom">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nom" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="deletePhotoNomResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="getAlbum">
     <xs:complexType>
       <xs:sequence>

@@ -26,19 +26,6 @@
             </Border>
         </DataTemplate>
 
-        <DataTemplate x:Key="AlbumSourceTemplate">
-            <Border Padding="5,5,5,5" Margin="5,5,5,5" BorderBrush="AliceBlue" BorderThickness="3" CornerRadius="5">
-                <StackPanel Orientation="Vertical">
-                    <Image Width="100" Height="100" Stretch="Fill"
-                        Source="Dossier.png"/>
-                    <TextBlock Text="Identifiant :" 
-                        HorizontalAlignment="Center"/>
-                    <TextBlock Text="{Binding Path=idAlbum}" 
-                        HorizontalAlignment="Center"/>
-                </StackPanel>
-            </Border>
-        </DataTemplate>
-
         <Style x:Key="ImageListBoxStyle" TargetType="ListBox">
             <Setter Property="ItemsSource" Value="{Binding}" />
             <Setter Property="ItemTemplate" Value="{StaticResource ImageSourceTemplate}" />
@@ -52,20 +39,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <Style x:Key="AlbumListBoxStyle" TargetType="ListBox">
-            <Setter Property="ItemTemplate" Value="{StaticResource AlbumSourceTemplate}" />
-            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible" />
-            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
-            <Setter Property="ListBox.ItemsPanel">
-                <Setter.Value>
-                    <ItemsPanelTemplate>
-                        <WrapPanel />
-                    </ItemsPanelTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
     </UserControl.Resources>
 
     <Grid>
@@ -76,11 +49,10 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="35" />
         </Grid.RowDefinitions>
-
         <ListBox x:Name="ListAlbum"
                 Style="{StaticResource ImageListBoxStyle}"
                 DataContext="{StaticResource ListeAlbum}"
-                MouseLeftButtonDown="ListAlbum_MouseLeftButtonDown"
+                MouseDoubleClick="ListAlbum_MouseDoubleClick"
                 Grid.Row="0"/>
         <GridSplitter HorizontalAlignment="Stretch"
                 ResizeBehavior="PreviousAndNext"
@@ -91,6 +63,9 @@
                 DataContext="{StaticResource ImageCollection}"
                 Grid.Row="2"/>
         <Button HorizontalAlignment="Right" Margin="0,0,5,5" VerticalAlignment="Bottom" Width="100" Content="&lt; Back" Height="25" Click="Button_Click" Grid.Row="3" />
+
+        <TextBox x:Name="numeroUtilisateur" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,585,5" Height="25" Grid.Row="3" Width="71" />
+        <Button HorizontalAlignment="Left" Margin="12,0,0,5" VerticalAlignment="Bottom" Width="126" Content="Numéro Utilisateur &gt;" Height="25" Click="DownloadUserAlbum_Click" Grid.Row="3" />
     </Grid>
 
 
