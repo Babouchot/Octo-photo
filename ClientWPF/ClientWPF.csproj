@@ -195,12 +195,6 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Octo-photo-wcf\Octo-photo-wcf.csproj">
-      <Project>{C63FB4C3-B40F-4A6E-8375-34BCBD3B2549}</Project>
-      <Name>Octo-photo-wcf</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
