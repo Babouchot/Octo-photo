@@ -40,6 +40,9 @@ namespace Octo_photo_wcf
         String[] getAlbum(int id);
 
         [OperationContract]
+        String getNomAlbum(int id);
+
+        [OperationContract]
         int[] getUserAlbum(int id);
     }
     [MessageContract]
