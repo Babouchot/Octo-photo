@@ -327,6 +327,44 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IImageTransfert_getUserAlbum_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IImageTransfert_getUserAlbum_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:1655/ImageTransfert.svc?xsd=xsd1" namespace="http://tempuri.org/" />
@@ -373,6 +411,12 @@
   <wsdl:message name="IImageTransfert_getAlbum_OutputMessage">
     <wsdl:part name="parameters" element="tns:getAlbumResponse" />
   </wsdl:message>
+  <wsdl:message name="IImageTransfert_getUserAlbum_InputMessage">
+    <wsdl:part name="parameters" element="tns:getUserAlbum" />
+  </wsdl:message>
+  <wsdl:message name="IImageTransfert_getUserAlbum_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getUserAlbumResponse" />
+  </wsdl:message>
   <wsdl:portType name="IImageTransfert">
     <wsdl:operation name="UploadImage">
       <wsdl:input wsaw:Action="http://tempuri.org/IImageTransfert/UploadImage" name="ImageUploadRequest" message="tns:ImageUploadRequest" />
@@ -397,6 +441,10 @@
     <wsdl:operation name="getAlbum">
       <wsdl:input wsaw:Action="http://tempuri.org/IImageTransfert/getAlbum" message="tns:IImageTransfert_getAlbum_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IImageTransfert/getAlbumResponse" message="tns:IImageTransfert_getAlbum_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserAlbum">
+      <wsdl:input wsaw:Action="http://tempuri.org/IImageTransfert/getUserAlbum" message="tns:IImageTransfert_getUserAlbum_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IImageTransfert/getUserAlbumResponse" message="tns:IImageTransfert_getUserAlbum_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IImageTransfert" type="tns:IImageTransfert">
@@ -469,6 +517,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getUserAlbum">
+      <soap12:operation soapAction="http://tempuri.org/IImageTransfert/getUserAlbum" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IImageTransfert_getUserAlbum_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IImageTransfert_getUserAlbum_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="ImageTransfert">
     <wsdl:port name="WSHttpBinding_IImageTransfert" binding="tns:WSHttpBinding_IImageTransfert">
@@ -476,7 +535,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>http://localhost:1655/ImageTransfert.svc</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>Admin-msi\Admin</Upn>
+          <Upn>YXXX\user</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

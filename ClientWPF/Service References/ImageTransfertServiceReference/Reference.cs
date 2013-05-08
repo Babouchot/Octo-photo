@@ -33,7 +33,10 @@ namespace ClientWPF.ImageTransfertServiceReference {
         void deletePhoto(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/getAlbum", ReplyAction="http://tempuri.org/IImageTransfert/getAlbumResponse")]
-        byte[][] getAlbum(int id);
+        string[] getAlbum(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/getUserAlbum", ReplyAction="http://tempuri.org/IImageTransfert/getUserAlbumResponse")]
+        int[] getUserAlbum(int id);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -164,8 +167,12 @@ namespace ClientWPF.ImageTransfertServiceReference {
             base.Channel.deletePhoto(id);
         }
         
-        public byte[][] getAlbum(int id) {
+        public string[] getAlbum(int id) {
             return base.Channel.getAlbum(id);
+        }
+        
+        public int[] getUserAlbum(int id) {
+            return base.Channel.getUserAlbum(id);
         }
     }
 }

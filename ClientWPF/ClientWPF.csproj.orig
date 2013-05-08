@@ -219,11 +219,9 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+<<<<<<< HEAD
+=======
   <ItemGroup>
-    <ProjectReference Include="..\Octo-photo-library\Octo-photo-library.csproj">
-      <Project>{B8DB6ACD-5D46-4D87-8D19-D04A24DC2F77}</Project>
-      <Name>Octo-photo-library</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Octo-photo-wcf\Octo-photo-wcf.csproj">
       <Project>{C63FB4C3-B40F-4A6E-8375-34BCBD3B2549}</Project>
       <Name>Octo-photo-wcf</Name>
@@ -244,6 +242,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+>>>>>>> fccda9a39cecbe9e8109699ac47dc9a5bd4b622e
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

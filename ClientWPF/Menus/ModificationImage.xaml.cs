@@ -117,9 +117,26 @@ namespace ClientWPF
         {
             //todo : charger les fichier un a un dans la listbox supérieur
             Debug.WriteLine("download");
-            ImageTransfertServiceReference.ImageTransfertClient transfertService =
-                new ImageTransfertServiceReference.ImageTransfertClient();
-            byte[][] images = transfertService.getAlbum(int.Parse(numeroDownloadAlbum.Text));
+            ImageTransfertServiceReference.ImageTransfertClient transfertService = new ImageTransfertServiceReference.ImageTransfertClient();
+            String[] images = transfertService.getAlbum(int.Parse(numeroDownloadAlbum.Text));
+
+            foreach (String s in images)
+            {
+                ImageTransfertServiceReference.ImageTransfertClient imageTransfertService = new ImageTransfertServiceReference.ImageTransfertClient();
+
+                Octo_photo_wcf.ImageInfo info = new Octo_photo_wcf.ImageInfo();
+                info.ID = s;
+                info.idAlbum = 1;
+                ImageTransfertServiceReference.ImageDownloadResponse reponse = new ImageTransfertServiceReference.ImageDownloadResponse();
+
+                // Appel de notre web method
+                reponse.ImageData = transfertService.DownloadImage(info);
+                Stream image = reponse.ImageData;
+                MemoryStream memStream = new MemoryStream();
+                image.CopyTo(memStream);
+                Byte[] bytes = memStream.ToArray();
+                imageCollection1.Add(new ImageObjet(s, bytes));
+            }
         }
 
         private void Save_Click(object sender, EventArgs e)

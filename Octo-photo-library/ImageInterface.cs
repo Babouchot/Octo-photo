@@ -10,7 +10,7 @@ namespace Octo_photo_library
     public class ImageInterface
     {
         SqlConnection connexion;
-        string bdConec = "Server=ADMIN-MSI;Database=DBMiniProjet;Integrated Security=true;";
+        string bdConec = "Server=YXXX;Database=DBMiniProjet;Integrated Security=true;";
 
         public void addImage(string ID, int idAlbum, byte[] image)
         {            
@@ -88,11 +88,9 @@ namespace Octo_photo_library
             return blob;
         }
 
-        // récupération d'une image de la base à l'aide d'un DataReader
-        public byte[][] getAlbum(int albumID)
+        public String[] getAlbum(int albumID)
         {
-            byte[][] imageBlob = null;
-            byte[] blob = null;
+            String[] listImage = null;
 
             try
             {
@@ -105,25 +103,26 @@ namespace Octo_photo_library
 
                 // construit la requête 
                 SqlCommand getAlbum = new SqlCommand(
-                    "SELECT size, blob, idAlbum " +
-                    "FROM Photo" +
+                    "SELECT idAlbum, nomPhoto " +
+                    "FROM Photo " +
                     "WHERE idAlbum = @idAlbum", connexion);
-                getAlbum.Parameters.Add("@idAlbum", SqlDbType.Int).Value =
-                albumID;
+                getAlbum.Parameters.Add("@idAlbum", SqlDbType.Int).Value = albumID;
                 // exécution de la requête et création du reader
-                SqlDataReader myReader =
-                getAlbum.ExecuteReader(CommandBehavior.SequentialAccess);
+                SqlDataReader myReader = getAlbum.ExecuteReader(CommandBehavior.SequentialAccess);
                 int e = 0;
+                List<String> listTmp = new List<String>();
 
                 while (myReader.Read())
                 {
-                    // lit la taille du blob
-                    int size = myReader.GetInt32(1);
-                    blob = new byte[size];
-                    // récupére le blob de la BDD et le copie dans la variable blob
-                    myReader.GetBytes(2, 0, blob, 0, size);
-                    //on ajoute au tableau de blob le blob courant
-                    imageBlob[e] = blob;
+                    char[] buf = new char[20];
+                    myReader.GetChars(1,0,buf, 0, 20);
+                    String temp = new String(buf);
+                    listTmp.Add(temp);
+                }
+                listImage = new String[listTmp.Count];
+                foreach (String s in listTmp)
+                {
+                    listImage[e] = s;
                     e++;
                 }
             }
@@ -136,7 +135,7 @@ namespace Octo_photo_library
                 // dans tous les cas on ferme la connexion
                 connexion.Close();
             }
-            return imageBlob;
+            return listImage;
         }
 
 
