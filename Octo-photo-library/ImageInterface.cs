@@ -10,7 +10,7 @@ namespace Octo_photo_library
     public class ImageInterface
     {
         SqlConnection connexion;
-        string bdConec = "Server=MAUREILL;Database=DBMiniProjet;Integrated Security=true;";
+        string bdConec = "Server=ADMIN-MSI;Database=DBMiniProjet;Integrated Security=true;";
 
         public void addImage(string ID, int idAlbum, byte[] image)
         {            
@@ -137,6 +137,48 @@ namespace Octo_photo_library
                 connexion.Close();
             }
             return imageBlob;
+        }
+
+
+        public int[] getUserAlbum(int userID)
+        {
+            int[] listeAlbum = null;
+
+            try
+            {
+                // connexion au serveur
+                string connectionStr = bdConec;
+
+                // creation des object SqlConnection, SqlCommand et DataReader 
+                connexion = new SqlConnection(connectionStr);
+                connexion.Open();
+
+                // construit la requête 
+                SqlCommand getUserAlbum = new SqlCommand(
+                    "SELECT idAlbum " +
+                    "FROM Album" +
+                    "WHERE idUtilisateur = @idUtilisateur", connexion);
+                getUserAlbum.Parameters.Add("@idUtilisateur", SqlDbType.Int).Value = userID;
+                int e = 0;
+                // exécution de la requête et création du reader
+                SqlDataReader myReader = getUserAlbum.ExecuteReader(CommandBehavior.SequentialAccess);
+
+                while (myReader.Read())
+                {
+                    listeAlbum[e] = myReader.GetInt32(0);
+                    e++;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erreur :" + e.Message);
+            }
+            finally
+            {
+                // dans tous les cas on ferme la connexion
+                connexion.Close();
+            }
+            return listeAlbum;
         }
 
 

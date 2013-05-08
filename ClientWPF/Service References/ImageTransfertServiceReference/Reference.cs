@@ -8,69 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClientWeb.ImageTransfertServiceReference {
-    using System.Runtime.Serialization;
-    using System;
+namespace ClientWPF.ImageTransfertServiceReference {
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ImageInfo", Namespace="http://schemas.datacontract.org/2004/07/Octo_photo_wcf")]
-    [System.SerializableAttribute()]
-    public partial class ImageInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private string IDField;
-        
-        private int idAlbumField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public string ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.IDField, value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public int idAlbum {
-            get {
-                return this.idAlbumField;
-            }
-            set {
-                if ((this.idAlbumField.Equals(value) != true)) {
-                    this.idAlbumField = value;
-                    this.RaisePropertyChanged("idAlbum");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ImageTransfertServiceReference.IImageTransfert")]
@@ -78,11 +17,11 @@ namespace ClientWeb.ImageTransfertServiceReference {
         
         // CODEGEN : La génération du contrat de message depuis l'opération UploadImage n'est ni RPC, ni encapsulée dans un document.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/UploadImage", ReplyAction="http://tempuri.org/IImageTransfert/UploadImageResponse")]
-        ClientWeb.ImageTransfertServiceReference.UploadImageResponse UploadImage(ClientWeb.ImageTransfertServiceReference.ImageUploadRequest request);
+        ClientWPF.ImageTransfertServiceReference.UploadImageResponse UploadImage(ClientWPF.ImageTransfertServiceReference.ImageUploadRequest request);
         
         // CODEGEN : La génération du contrat de message depuis le nom de wrapper (ImageDownloadRequest) du message ImageDownloadRequest ne correspond pas à la valeur par défaut (DownloadImage)
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/DownloadImage", ReplyAction="http://tempuri.org/IImageTransfert/DownloadImageResponse")]
-        ClientWeb.ImageTransfertServiceReference.ImageDownloadResponse DownloadImage(ClientWeb.ImageTransfertServiceReference.ImageDownloadRequest request);
+        ClientWPF.ImageTransfertServiceReference.ImageDownloadResponse DownloadImage(ClientWPF.ImageTransfertServiceReference.ImageDownloadRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/deleteUser", ReplyAction="http://tempuri.org/IImageTransfert/deleteUserResponse")]
         void deleteUser(int id);
@@ -104,7 +43,7 @@ namespace ClientWeb.ImageTransfertServiceReference {
     public partial class ImageUploadRequest {
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
-        public ClientWeb.ImageTransfertServiceReference.ImageInfo ImageInfo;
+        public Octo_photo_wcf.ImageInfo ImageInfo;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
         public System.IO.Stream ImageData;
@@ -112,7 +51,7 @@ namespace ClientWeb.ImageTransfertServiceReference {
         public ImageUploadRequest() {
         }
         
-        public ImageUploadRequest(ClientWeb.ImageTransfertServiceReference.ImageInfo ImageInfo, System.IO.Stream ImageData) {
+        public ImageUploadRequest(Octo_photo_wcf.ImageInfo ImageInfo, System.IO.Stream ImageData) {
             this.ImageInfo = ImageInfo;
             this.ImageData = ImageData;
         }
@@ -135,12 +74,12 @@ namespace ClientWeb.ImageTransfertServiceReference {
     public partial class ImageDownloadRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public ClientWeb.ImageTransfertServiceReference.ImageInfo ImageInfo;
+        public Octo_photo_wcf.ImageInfo ImageInfo;
         
         public ImageDownloadRequest() {
         }
         
-        public ImageDownloadRequest(ClientWeb.ImageTransfertServiceReference.ImageInfo ImageInfo) {
+        public ImageDownloadRequest(Octo_photo_wcf.ImageInfo ImageInfo) {
             this.ImageInfo = ImageInfo;
         }
     }
@@ -163,12 +102,12 @@ namespace ClientWeb.ImageTransfertServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IImageTransfertChannel : ClientWeb.ImageTransfertServiceReference.IImageTransfert, System.ServiceModel.IClientChannel {
+    public interface IImageTransfertChannel : ClientWPF.ImageTransfertServiceReference.IImageTransfert, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ImageTransfertClient : System.ServiceModel.ClientBase<ClientWeb.ImageTransfertServiceReference.IImageTransfert>, ClientWeb.ImageTransfertServiceReference.IImageTransfert {
+    public partial class ImageTransfertClient : System.ServiceModel.ClientBase<ClientWPF.ImageTransfertServiceReference.IImageTransfert>, ClientWPF.ImageTransfertServiceReference.IImageTransfert {
         
         public ImageTransfertClient() {
         }
@@ -190,26 +129,26 @@ namespace ClientWeb.ImageTransfertServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ClientWeb.ImageTransfertServiceReference.UploadImageResponse ClientWeb.ImageTransfertServiceReference.IImageTransfert.UploadImage(ClientWeb.ImageTransfertServiceReference.ImageUploadRequest request) {
+        ClientWPF.ImageTransfertServiceReference.UploadImageResponse ClientWPF.ImageTransfertServiceReference.IImageTransfert.UploadImage(ClientWPF.ImageTransfertServiceReference.ImageUploadRequest request) {
             return base.Channel.UploadImage(request);
         }
         
-        public void UploadImage(ClientWeb.ImageTransfertServiceReference.ImageInfo ImageInfo, System.IO.Stream ImageData) {
-            ClientWeb.ImageTransfertServiceReference.ImageUploadRequest inValue = new ClientWeb.ImageTransfertServiceReference.ImageUploadRequest();
+        public void UploadImage(Octo_photo_wcf.ImageInfo ImageInfo, System.IO.Stream ImageData) {
+            ClientWPF.ImageTransfertServiceReference.ImageUploadRequest inValue = new ClientWPF.ImageTransfertServiceReference.ImageUploadRequest();
             inValue.ImageInfo = ImageInfo;
             inValue.ImageData = ImageData;
-            ClientWeb.ImageTransfertServiceReference.UploadImageResponse retVal = ((ClientWeb.ImageTransfertServiceReference.IImageTransfert)(this)).UploadImage(inValue);
+            ClientWPF.ImageTransfertServiceReference.UploadImageResponse retVal = ((ClientWPF.ImageTransfertServiceReference.IImageTransfert)(this)).UploadImage(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ClientWeb.ImageTransfertServiceReference.ImageDownloadResponse ClientWeb.ImageTransfertServiceReference.IImageTransfert.DownloadImage(ClientWeb.ImageTransfertServiceReference.ImageDownloadRequest request) {
+        ClientWPF.ImageTransfertServiceReference.ImageDownloadResponse ClientWPF.ImageTransfertServiceReference.IImageTransfert.DownloadImage(ClientWPF.ImageTransfertServiceReference.ImageDownloadRequest request) {
             return base.Channel.DownloadImage(request);
         }
         
-        public System.IO.Stream DownloadImage(ClientWeb.ImageTransfertServiceReference.ImageInfo ImageInfo) {
-            ClientWeb.ImageTransfertServiceReference.ImageDownloadRequest inValue = new ClientWeb.ImageTransfertServiceReference.ImageDownloadRequest();
+        public System.IO.Stream DownloadImage(Octo_photo_wcf.ImageInfo ImageInfo) {
+            ClientWPF.ImageTransfertServiceReference.ImageDownloadRequest inValue = new ClientWPF.ImageTransfertServiceReference.ImageDownloadRequest();
             inValue.ImageInfo = ImageInfo;
-            ClientWeb.ImageTransfertServiceReference.ImageDownloadResponse retVal = ((ClientWeb.ImageTransfertServiceReference.IImageTransfert)(this)).DownloadImage(inValue);
+            ClientWPF.ImageTransfertServiceReference.ImageDownloadResponse retVal = ((ClientWPF.ImageTransfertServiceReference.IImageTransfert)(this)).DownloadImage(inValue);
             return retVal.ImageData;
         }
         

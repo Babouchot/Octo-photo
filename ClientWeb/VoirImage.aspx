@@ -34,6 +34,7 @@
                         <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Accueil"/>
                         <asp:MenuItem NavigateUrl="~/VoirImage.aspx" Text="Voir vos images"/>
                         <asp:MenuItem NavigateUrl="~/DeposerImage.aspx" Text="Déposer vos images"/>
+                        <asp:MenuItem NavigateUrl="~/VisualiserAlbum.aspx" Text="Visualiser un album" />
                     </Items>
                 </asp:Menu>
             </div>
