@@ -88,6 +88,57 @@ namespace Octo_photo_library
             return blob;
         }
 
+        // récupération d'une image de la base à l'aide d'un DataReader
+        public List<byte[]> getAlbum(int albumID)
+        {
+            List<byte[]> imageBlob = null;
+            byte[] blob = null;
+            try
+            {
+                // connexion au serveur
+                string connectionStr = bdConec;
+
+                // creation des object SqlConnection, SqlCommand et DataReader 
+                connexion = new SqlConnection(connectionStr);
+                connexion.Open();
+
+                // construit la requête 
+                SqlCommand getAlbum = new SqlCommand(
+                    "SELECT size, blob, idAlbum " +
+                    "FROM Photo" +
+                    "WHERE idAlbum = @idAlbum", connexion);
+                getAlbum.Parameters.Add("@idAlbum", SqlDbType.Int).Value =
+                albumID;
+                // exécution de la requête et création du reader
+                SqlDataReader myReader =
+                getAlbum.ExecuteReader(CommandBehavior.SequentialAccess);
+                int e = 0;
+                imageBlob = new List<byte[]>();
+
+                while (myReader.Read())
+                {
+                    // lit la taille du blob
+                    int size = myReader.GetInt32(1);
+                    blob = new byte[size];
+                    // récupére le blob de la BDD et le copie dans la variable blob
+                    myReader.GetBytes(2, 0, blob, 0, size);
+                    //on ajoute au tableau de blob le blob courant
+                    imageBlob.Add(blob);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erreur :" + e.Message);
+            }
+            finally
+            {
+                // dans tous les cas on ferme la connexion
+                connexion.Close();
+            }
+            return imageBlob;
+        }
+
+
         public void deleteUser(int id)
         {
             try
