@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0">
+  <Operation Name="Rename Refactor" Key="7de523ce-ddee-4422-903f-007db87e432f" ChangeDateTime="05/08/2013 09:16:47">
+    <Property Name="ElementName" Value="[dbo].[Utilisateur].[passwordd]" />
+    <Property Name="ElementType" Value="ISql100SimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Utilisateur]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="[password]" />
+  </Operation>
+</Operations>
