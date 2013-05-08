@@ -138,6 +138,46 @@ namespace Octo_photo_library
             return listImage;
         }
 
+        public String getNomAlbum(int albumID)
+        {
+            String nomAlbum = null;
+
+            try
+            {
+                // connexion au serveur
+                string connectionStr = bdConec;
+
+                // creation des object SqlConnection, SqlCommand et DataReader 
+                connexion = new SqlConnection(connectionStr);
+                connexion.Open();
+
+                // construit la requête 
+                SqlCommand getAlbum = new SqlCommand(
+                    "SELECT nomAlbum " +
+                    "FROM Album " +
+                    "WHERE idAlbum = @idAlbum", connexion);
+                getAlbum.Parameters.Add("@idAlbum", SqlDbType.Int).Value = albumID;
+                // exécution de la requête et création du reader
+                SqlDataReader myReader = getAlbum.ExecuteReader(CommandBehavior.SequentialAccess);
+
+                if (myReader.Read())
+                {
+                    char[] buf = new char[20];
+                    myReader.GetChars(1, 0, buf, 0, 20);
+                    nomAlbum = new String(buf);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erreur :" + e.Message);
+            }
+            finally
+            {
+                // dans tous les cas on ferme la connexion
+                connexion.Close();
+            }
+            return nomAlbum;
+        }
 
         public int[] getUserAlbum(int userID)
         {
@@ -187,7 +227,6 @@ namespace Octo_photo_library
             return listeAlbum;
         }
 
-
         public void deleteUser(int id)
         {
             try
@@ -216,30 +255,6 @@ namespace Octo_photo_library
             }
         }
 
-        private void executeSimpleSQL(SqlCommand commande)
-        {
-            try
-            {
-                // connexion au serveur
-                string connectionStr = bdConec;
-
-                // creation des object SqlConnection, SqlCommand
-                connexion = new SqlConnection(connectionStr);
-                connexion.Open();
-
-                // construit la requête 
-                commande.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Erreur :" + e.Message);
-            }
-            finally
-            {
-                // dans tous les cas on ferme la connexion
-                connexion.Close();
-            }
-        }
         public void deleteAlbum(int id)
         {
             try
@@ -256,6 +271,35 @@ namespace Octo_photo_library
                     "DELETE FROM Album WHERE idAlbum = @idAlbum", connexion);
                 deleteAlbum.Parameters.Add("@idAlbum", SqlDbType.Int).Value = id;
                 deleteAlbum.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erreur :" + e.Message);
+            }
+            finally
+            {
+                // dans tous les cas on ferme la connexion
+                connexion.Close();
+            }
+        }
+
+        public void createAlbum(String nomAlbum, int idUser)
+        {
+            try
+            {
+                // connexion au serveur
+                string connectionStr = bdConec;
+
+                // creation des object SqlConnection, SqlCommand
+                connexion = new SqlConnection(connectionStr);
+                connexion.Open();
+
+                // construit la requête 
+                SqlCommand createAlbum = new SqlCommand(
+                    "INSERT INTO Album (idUtilisateur, nomAlbum) VALUES (@idUtilisateur, @nomAlbum)", connexion);
+                createAlbum.Parameters.Add("@idUtilisateur", SqlDbType.Int).Value = idUser;
+                createAlbum.Parameters.Add("@nomAlbum", SqlDbType.NChar, nomAlbum.Length).Value = nomAlbum;
+                createAlbum.ExecuteNonQuery();
             }
             catch (Exception e)
             {
@@ -325,6 +369,7 @@ namespace Octo_photo_library
                 connexion.Close();
             }
         }
+
         public void deletePhoto(String nom)
         {
             try

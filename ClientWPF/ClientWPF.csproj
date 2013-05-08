@@ -86,6 +86,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ISwitchable.cs" />
+    <Compile Include="Menus\CreerAlbum.xaml.cs">
+      <DependentUpon>CreerAlbum.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageSwitcher.xaml.cs">
       <DependentUpon>PageSwitcher.xaml</DependentUpon>
     </Compile>
@@ -101,6 +104,10 @@
     </Compile>
     <Compile Include="ByteArrayToImageConverter.cs" />
     <Compile Include="ImageObjet.cs" />
+    <Page Include="Menus\CreerAlbum.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Menus\ModificationImage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

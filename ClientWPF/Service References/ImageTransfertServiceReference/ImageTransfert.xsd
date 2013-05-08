@@ -49,6 +49,19 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="createAlbum">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nom" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="createAlbumResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="deletePhotoInAlbum">
     <xs:complexType>
       <xs:sequence>

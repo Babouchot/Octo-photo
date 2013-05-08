@@ -37,6 +37,10 @@ namespace ClientWPF
 		{
 			Switcher.Switch(new VoirAlbum());
 		}
+        private void creerAlbumButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Switcher.Switch(new CreerAlbum());
+        }
 
 
         //private void ShowMessageBox(string title, string message, MessageBoxIcon icon)
