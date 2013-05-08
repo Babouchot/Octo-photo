@@ -105,6 +105,9 @@ namespace ClientWeb.ImageTransfertServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/getAlbum", ReplyAction="http://tempuri.org/IImageTransfert/getAlbumResponse")]
         string[] getAlbum(int id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/getNomAlbum", ReplyAction="http://tempuri.org/IImageTransfert/getNomAlbumResponse")]
+        string getNomAlbum(int id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/getUserAlbum", ReplyAction="http://tempuri.org/IImageTransfert/getUserAlbumResponse")]
         int[] getUserAlbum(int id);
     }
@@ -251,6 +254,10 @@ namespace ClientWeb.ImageTransfertServiceReference {
         
         public string[] getAlbum(int id) {
             return base.Channel.getAlbum(id);
+        }
+        
+        public string getNomAlbum(int id) {
+            return base.Channel.getNomAlbum(id);
         }
         
         public int[] getUserAlbum(int id) {
