@@ -48,13 +48,20 @@
                 <asp:Label ID="NumeroAlbumLabel" runat="server" AssociatedControlID="NumeroAlbum">Numéro d'album :</asp:Label>
                 <asp:TextBox ID="NumeroAlbum" runat="server" CssClass="textEntry"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="NumeroAlbumRequired" runat="server" ControlToValidate="NumeroAlbum"
-                    CssClass="failureNotification" ErrorMessage="Un numéro d'album est requis." ToolTip="Un numéro d'album est requis."
+                    CssClass="failureNotification" ErrorMessage="Un numéro d'album est requis." ToolTip="Un numéro d'album entier est requis."
                     ValidationGroup="DeposValidationGroup">*</asp:RequiredFieldValidator>
             </p>
         </fieldset>
         <p class="submitButton">
             <asp:Button ID="VisButton" runat="server" OnClick="Visualiser_Click" Text="Visualiser"
                 ValidationGroup="DeposValidationGroup" />
+        </p>
+        <p>
+            <asp:ListBox ID="albumImages" runat="server" 
+                onselectedindexchanged="albumImages_SelectedIndexChanged" />
+        </p>
+        <p>
+            <asp:Image ID="ImageCourante" runat="server" />
         </p>
     </div>
     </form>

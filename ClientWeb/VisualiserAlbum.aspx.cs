@@ -19,7 +19,19 @@ namespace ClientWeb
             System.Diagnostics.Debug.WriteLine("visualiser");
             ImageTransfertServiceReference.ImageTransfertClient imageTransfert =
                 new ImageTransfertServiceReference.ImageTransfertClient();
-            //byte[][] album = imageTransfert.getAlbum();
+            try
+            {
+                byte[][] album = imageTransfert.getAlbum(int.Parse(NumeroAlbum.Text));
+            }
+            catch (FormatException)
+            {
+                System.Diagnostics.Debug.WriteLine("Un nombre entier est requis");
+            }
+        }
+
+        protected void albumImages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ImageCourante.ImageUrl = "VisualiserAlbum.aspx?ImageID=" + albumImages.SelectedValue;
         }
     }
 }
