@@ -110,7 +110,7 @@ namespace ClientWPF
             foreach (int i in numAlbum)
             {
                 string temp = transfertService.getNomAlbum(i) + "\nAlbum-" + i;
-                listAlbum.Add(new ImageObjet(temp, lireFichier(@"D:\MiniProjetServeur\Octo-photo\ClientWPF\Menus\Dossier.png")));
+                listAlbum.Add(new ImageObjet(temp, lireFichier(System.IO.Path.GetFullPath("../../Menus/Dossier.png"))));
             }
         }
 	}
