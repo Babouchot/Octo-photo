@@ -25,6 +25,9 @@ namespace Octo_photo_wcf
         void deleteAlbum(int id);
 
         [OperationContract]
+        void createAlbum(String nom, int id);
+
+        [OperationContract]
         void deletePhotoInAlbum(int id);
 
         [OperationContract]

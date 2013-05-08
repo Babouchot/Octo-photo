@@ -48,6 +48,10 @@ namespace Octo_photo_wcf
         {
             bdAccess.deleteAlbum(id);
         }
+        public void createAlbum(String nom, int id)
+        {
+            bdAccess.createAlbum(nom, id);
+        }
         public void deletePhotoInAlbum(int id)
         {
             bdAccess.deletePhotoInAlbum(id);
