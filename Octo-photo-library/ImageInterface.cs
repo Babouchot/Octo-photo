@@ -10,7 +10,7 @@ namespace Octo_photo_library
     public class ImageInterface
     {
         SqlConnection connexion;
-        string bdConec = "Server=ADMIN-MSI;Database=DBMiniProjet;Integrated Security=true;";
+        string bdConec = "Server=YXXX;Database=DBMiniProjet;Integrated Security=true;";
 
         public void addImage(string ID, int idAlbum, byte[] image)
         {            
@@ -163,7 +163,7 @@ namespace Octo_photo_library
                 if (myReader.Read())
                 {
                     char[] buf = new char[20];
-                    myReader.GetChars(1, 0, buf, 0, 20);
+                    myReader.GetChars(0, 0, buf, 0, 20);
                     nomAlbum = new String(buf);
                 }
             }

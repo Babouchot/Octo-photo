@@ -112,6 +112,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="getNomAlbum">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getNomAlbumResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="getNomAlbumResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="getUserAlbum">
     <xs:complexType>
       <xs:sequence>
