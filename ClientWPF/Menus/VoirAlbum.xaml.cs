@@ -18,16 +18,16 @@ using System.Diagnostics;
 
 namespace ClientWPF
 {
-	public partial class VoirAlbum : UserControl, ISwitchable
-	{
+    public partial class VoirAlbum : UserControl, ISwitchable
+    {
 
         private ImageCollection listAlbum;
         private ImageCollection imageCollection;
 
-		public VoirAlbum()
-		{
-			// Required to initialize variables
-			InitializeComponent();
+        public VoirAlbum()
+        {
+            // Required to initialize variables
+            InitializeComponent();
 
             listAlbum = new ImageCollection();
             imageCollection = new ImageCollection();
@@ -39,19 +39,7 @@ namespace ClientWPF
             ObjectDataProvider imageSource2 = (ObjectDataProvider)FindResource("ImageCollection");
             imageSource2.ObjectInstance = imageCollection;
 
-		}
-
-        #region ISwitchable Members
-        public void UtilizeState(object state)
-        {
-            throw new NotImplementedException();
         }
-
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-        	Switcher.Switch(new MainMenu());
-        }
-        #endregion
 
         /// <summary> 
         /// Lit et retourne le contenu du fichier sous la forme de tableau de byte 
@@ -72,46 +60,72 @@ namespace ClientWPF
 
         private void ListAlbum_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            imageCollection.Clear();
-            ImageTransfertServiceReference.ImageTransfertClient transfertService = new ImageTransfertServiceReference.ImageTransfertClient();
-            ListBox temp = (ListBox) sender;
-            ImageObjet data = (ImageObjet) temp.SelectedItem;
-            if (data != null)
+            try
             {
-                string[] parseNom = data.Nom.Split('-');
-                int numAlbum = int.Parse(parseNom[1]);
-                String[] images = transfertService.getAlbum(numAlbum);
-
-                foreach (String s in images)
+                imageCollection.Clear();
+                ImageTransfertServiceReference.ImageTransfertClient transfertService = new ImageTransfertServiceReference.ImageTransfertClient();
+                ListBox temp = (ListBox)sender;
+                ImageObjet data = (ImageObjet)temp.SelectedItem;
+                if (data != null)
                 {
-                    ImageTransfertServiceReference.ImageTransfertClient imageTransfertService = new ImageTransfertServiceReference.ImageTransfertClient();
+                    string[] parseNom = data.Nom.Split('-');
+                    int numAlbum = int.Parse(parseNom[parseNom.Length - 1]);
+                    String[] images = transfertService.getAlbum(numAlbum);
 
-                    ImageTransfertServiceReference.ImageInfo info = new ImageTransfertServiceReference.ImageInfo();
-                    info.ID = s;
-                    ImageTransfertServiceReference.ImageDownloadResponse reponse = new ImageTransfertServiceReference.ImageDownloadResponse();
+                    foreach (String s in images)
+                    {
+                        ImageTransfertServiceReference.ImageTransfertClient imageTransfertService = new ImageTransfertServiceReference.ImageTransfertClient();
 
-                    // Appel de notre web method
-                    reponse.ImageData = transfertService.DownloadImage(info);
-                    Stream image = reponse.ImageData;
-                    MemoryStream memStream = new MemoryStream();
-                    image.CopyTo(memStream);
-                    Byte[] bytes = memStream.ToArray();
-                    imageCollection.Add(new ImageObjet(s, bytes));
+                        ImageTransfertServiceReference.ImageInfo info = new ImageTransfertServiceReference.ImageInfo();
+                        info.ID = s;
+                        ImageTransfertServiceReference.ImageDownloadResponse reponse = new ImageTransfertServiceReference.ImageDownloadResponse();
+
+                        // Appel de notre web method
+                        reponse.ImageData = transfertService.DownloadImage(info);
+                        Stream image = reponse.ImageData;
+                        MemoryStream memStream = new MemoryStream();
+                        image.CopyTo(memStream);
+                        Byte[] bytes = memStream.ToArray();
+                        imageCollection.Add(new ImageObjet(s, bytes));
+                    }
                 }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Le numéro d'album n'est pas un nombre");
             }
         }
 
         private void DownloadUserAlbum_Click(object sender, EventArgs e)
         {
-            listAlbum.Clear();
-            imageCollection.Clear();
-            ImageTransfertServiceReference.ImageTransfertClient transfertService = new ImageTransfertServiceReference.ImageTransfertClient();
-            int[] numAlbum = transfertService.getUserAlbum(int.Parse(numeroUtilisateur.Text));
-            foreach (int i in numAlbum)
+            try
             {
-                string temp = transfertService.getNomAlbum(i) + "\nAlbum-" + i;
-                listAlbum.Add(new ImageObjet(temp, lireFichier(@"D:\MiniProjetServeur\Octo-photo\ClientWPF\Menus\Dossier.png")));
+                listAlbum.Clear();
+                imageCollection.Clear();
+                ImageTransfertServiceReference.ImageTransfertClient transfertService = new ImageTransfertServiceReference.ImageTransfertClient();
+                int[] numAlbum = transfertService.getUserAlbum(int.Parse(numeroUtilisateur.Text));
+                foreach (int i in numAlbum)
+                {
+                    string temp = transfertService.getNomAlbum(i) + "\nAlbum-" + i;
+                    listAlbum.Add(new ImageObjet(temp, lireFichier(@"D:\MiniProjetServeur\Octo-photo\ClientWPF\Menus\Dossier.png")));
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Le numéro d'album n'est pas un nombre");
             }
         }
-	}
+
+        #region ISwitchable Members
+        public void UtilizeState(object state)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Switcher.Switch(new MainMenu());
+        }
+        #endregion
+    }
 }

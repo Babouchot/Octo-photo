@@ -22,6 +22,7 @@ namespace ClientWPF
     {
         private ImageCollection imageCollection1;
         private ImageCollection imageCollectionLocal;
+
         public ModificationImage()
         {
             InitializeComponent();
@@ -60,6 +61,7 @@ namespace ClientWPF
                 DragDrop.DoDragDrop(parent, data, DragDropEffects.Move);
             }
         }
+
         // On ajoute l'objet dans la nouvelle ListBox et on le supprime de l'ancienne
         private void ImageDropEvent(object sender, DragEventArgs e)
         {
@@ -68,6 +70,7 @@ namespace ClientWPF
             ((IList)dragSource.ItemsSource).Remove(data);
             ((IList)parent.ItemsSource).Add(data);
         }
+
         // On récupére l'objet que que l'on a dropé
         private static object GetDataFromListBox(ListBox source, Point point)
         {
@@ -115,24 +118,31 @@ namespace ClientWPF
 
         private void DownloadAlbum_Click(object sender, EventArgs e)
         {
-            ImageTransfertServiceReference.ImageTransfertClient transfertService = new ImageTransfertServiceReference.ImageTransfertClient();
-            String[] images = transfertService.getAlbum(int.Parse(numeroDownloadAlbum.Text));
-
-            foreach (String s in images)
+            try
             {
-                ImageTransfertServiceReference.ImageTransfertClient imageTransfertService = new ImageTransfertServiceReference.ImageTransfertClient();
+                ImageTransfertServiceReference.ImageTransfertClient transfertService = new ImageTransfertServiceReference.ImageTransfertClient();
+                String[] images = transfertService.getAlbum(int.Parse(numeroDownloadAlbum.Text));
 
-                ImageTransfertServiceReference.ImageInfo info = new ImageTransfertServiceReference.ImageInfo();
-                info.ID = s;
-                ImageTransfertServiceReference.ImageDownloadResponse reponse = new ImageTransfertServiceReference.ImageDownloadResponse();
+                foreach (String s in images)
+                {
+                    ImageTransfertServiceReference.ImageTransfertClient imageTransfertService = new ImageTransfertServiceReference.ImageTransfertClient();
 
-                // Appel de notre web method
-                reponse.ImageData = transfertService.DownloadImage(info);
-                Stream image = reponse.ImageData;
-                MemoryStream memStream = new MemoryStream();
-                image.CopyTo(memStream);
-                Byte[] bytes = memStream.ToArray();
-                imageCollection1.Add(new ImageObjet(s, bytes));
+                    ImageTransfertServiceReference.ImageInfo info = new ImageTransfertServiceReference.ImageInfo();
+                    info.ID = s;
+                    ImageTransfertServiceReference.ImageDownloadResponse reponse = new ImageTransfertServiceReference.ImageDownloadResponse();
+
+                    // Appel de notre web method
+                    reponse.ImageData = transfertService.DownloadImage(info);
+                    Stream image = reponse.ImageData;
+                    MemoryStream memStream = new MemoryStream();
+                    image.CopyTo(memStream);
+                    Byte[] bytes = memStream.ToArray();
+                    imageCollection1.Add(new ImageObjet(s, bytes));
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Le numéro d'album n'est pas un nombre");
             }
         }
 
@@ -162,6 +172,21 @@ namespace ClientWPF
             catch (FormatException)
             {
                 Console.WriteLine("Le numéro d'album n'est pas un nombre");
+            }
+        }
+
+        private void Reinitialiser_Click(object sender, RoutedEventArgs e)
+        {
+            imageCollection1.Clear();
+            imageCollectionLocal.Clear();
+            string[] files = Directory.GetFiles(@"C:\Users\Public\Pictures\Octo-Photo Images"); /// Stocke la liste des fichiers
+            foreach (string s in files)
+            {
+                if (System.IO.Path.GetExtension(s).ToUpper().Equals(".JPG"))
+                {
+                    imageCollectionLocal.Add(new ImageObjet(System.IO.Path.GetFileNameWithoutExtension(s), lireFichier(s)));
+                }
+
             }
         }
 
