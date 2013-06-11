@@ -289,6 +289,44 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IImageTransfert_createUser_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IImageTransfert_createUser_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="WSHttpBinding_IImageTransfert_deletePhotoInAlbum_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -557,6 +595,12 @@
   <wsdl:message name="IImageTransfert_createAlbum_OutputMessage">
     <wsdl:part name="parameters" element="tns:createAlbumResponse" />
   </wsdl:message>
+  <wsdl:message name="IImageTransfert_createUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:createUser" />
+  </wsdl:message>
+  <wsdl:message name="IImageTransfert_createUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:createUserResponse" />
+  </wsdl:message>
   <wsdl:message name="IImageTransfert_deletePhotoInAlbum_InputMessage">
     <wsdl:part name="parameters" element="tns:deletePhotoInAlbum" />
   </wsdl:message>
@@ -613,6 +657,10 @@
     <wsdl:operation name="createAlbum">
       <wsdl:input wsaw:Action="http://tempuri.org/IImageTransfert/createAlbum" message="tns:IImageTransfert_createAlbum_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IImageTransfert/createAlbumResponse" message="tns:IImageTransfert_createAlbum_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="createUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IImageTransfert/createUser" message="tns:IImageTransfert_createUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IImageTransfert/createUserResponse" message="tns:IImageTransfert_createUser_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="deletePhotoInAlbum">
       <wsdl:input wsaw:Action="http://tempuri.org/IImageTransfert/deletePhotoInAlbum" message="tns:IImageTransfert_deletePhotoInAlbum_InputMessage" />
@@ -695,6 +743,17 @@
       </wsdl:input>
       <wsdl:output>
         <wsp:PolicyReference URI="#WSHttpBinding_IImageTransfert_createAlbum_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createUser">
+      <soap12:operation soapAction="http://tempuri.org/IImageTransfert/createUser" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IImageTransfert_createUser_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IImageTransfert_createUser_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

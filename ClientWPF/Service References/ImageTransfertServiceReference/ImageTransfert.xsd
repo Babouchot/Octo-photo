@@ -62,6 +62,20 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="createUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nom" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="prenom" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="createUserResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="deletePhotoInAlbum">
     <xs:complexType>
       <xs:sequence>

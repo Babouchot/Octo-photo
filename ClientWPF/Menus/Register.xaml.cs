@@ -27,5 +27,30 @@ namespace ClientWPF
 		{
 			Switcher.Switch(new MainMenu());
 		}
+
+        private void Register_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (!(lastNameTextBox.Text.Equals("") || firstNameTextBox.Text.Equals("") || passwordBox1.Password.Equals("")))
+            {
+                if (passwordBox1.Password.Equals(passwordBox2.Password))
+                {
+                    ImageTransfertServiceReference.ImageTransfertClient transfertService = new ImageTransfertServiceReference.ImageTransfertClient();
+                    transfertService.createUser(lastNameTextBox.Text, firstNameTextBox.Text, passwordBox1.Password);
+                    validation.Text = "Vous avez bien été enregistré";
+                    validation.Background = Brushes.Green;
+                }
+                else
+                {
+                    validation.Text = "Les mots de passe sont différents";
+                    validation.Background = Brushes.Red;
+                }
+            }
+            else
+            {
+                validation.Text = "Tous les champs doivent être rempli";
+                validation.Background = Brushes.Red;
+            }
+
+        }
 	}
 }

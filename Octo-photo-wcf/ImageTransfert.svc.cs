@@ -52,6 +52,10 @@ namespace Octo_photo_wcf
         {
             bdAccess.createAlbum(nom, idUtilisateur);
         }
+        public void createUser(String nom, String prenom, String password)
+        {
+            bdAccess.createUser(nom, prenom, password);
+        }
         public void deletePhotoInAlbum(int id)
         {
             bdAccess.deletePhotoInAlbum(id);

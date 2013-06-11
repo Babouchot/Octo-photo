@@ -28,6 +28,9 @@ namespace Octo_photo_wcf
         void createAlbum(String nom, int id);
 
         [OperationContract]
+        void createUser(String nom, String prenom, String password);
+
+        [OperationContract]
         void deletePhotoInAlbum(int id);
 
         [OperationContract]

@@ -312,6 +312,36 @@ namespace Octo_photo_library
             }
         }
 
+        public void createUser(String userLastname, String userFirstname, String password)
+        {
+            try
+            {
+                // connexion au serveur
+                string connectionStr = bdConec;
+
+                // creation des object SqlConnection, SqlCommand
+                connexion = new SqlConnection(connectionStr);
+                connexion.Open();
+
+                // construit la requête 
+                SqlCommand createUser = new SqlCommand(
+                    "INSERT INTO Utilisateur (nom, prenom, password) VALUES (@nom, @prenom, @password)", connexion);
+                createUser.Parameters.Add("@nom", SqlDbType.NChar, userLastname.Length).Value = userLastname;
+                createUser.Parameters.Add("@prenom", SqlDbType.NChar, userFirstname.Length).Value = userFirstname;
+                createUser.Parameters.Add("@password", SqlDbType.NChar, password.Length).Value = password;
+                createUser.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erreur :" + e.Message);
+            }
+            finally
+            {
+                // dans tous les cas on ferme la connexion
+                connexion.Close();
+            }
+        }
+
         public void deletePhotoInAlbum(int id)
         {
             try

@@ -93,6 +93,9 @@ namespace ClientWPF.ImageTransfertServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/createAlbum", ReplyAction="http://tempuri.org/IImageTransfert/createAlbumResponse")]
         void createAlbum(string nom, int id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/createUser", ReplyAction="http://tempuri.org/IImageTransfert/createUserResponse")]
+        void createUser(string nom, string prenom, string password);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImageTransfert/deletePhotoInAlbum", ReplyAction="http://tempuri.org/IImageTransfert/deletePhotoInAlbumResponse")]
         void deletePhotoInAlbum(int id);
         
@@ -238,6 +241,10 @@ namespace ClientWPF.ImageTransfertServiceReference {
         
         public void createAlbum(string nom, int id) {
             base.Channel.createAlbum(nom, id);
+        }
+        
+        public void createUser(string nom, string prenom, string password) {
+            base.Channel.createUser(nom, prenom, password);
         }
         
         public void deletePhotoInAlbum(int id) {
